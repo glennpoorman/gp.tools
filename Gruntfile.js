@@ -72,6 +72,16 @@ module.exports = function(grunt) {
         clean: {
             dist: ['dist']
         },
+        watch: {
+            js: {
+              files: ['src/js/*.js'],
+              tasks: ['concat:js', 'uglify'],
+            },
+            css: {
+              files: ['src/css/*.css'],
+              tasks: ['concat:css', 'cssmin'],
+            },
+        },
     });
 
     grunt.loadNpmTasks('grunt-contrib-concat');
@@ -79,6 +89,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-cssmin');
     grunt.loadNpmTasks('grunt-contrib-clean');
+    grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.registerTask('default', ['concat', 'copy', 'uglify', 'cssmin']);
     grunt.registerTask('rebuild', ['clean', 'default']);
 };
