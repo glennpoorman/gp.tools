@@ -31,21 +31,15 @@ module.exports = function(grunt) {
         copy: {
             lightbox: {
                 expand: true,
-                cwd: 'src/lightbox/',
+                cwd: 'node_modules/lightbox2/dist/',
                 src: ['**'],
                 dest: 'dist/lightbox/',
             },
             mediaelement: {
                 expand: true,
-                cwd: 'src/mediaelement/',
+                cwd: 'node_modules/mediaelement/build/',
                 src: ['**'],
                 dest: 'dist/mediaelement/',
-            },
-            jquery: {
-                expand: true,
-                cwd: 'src/jquery/',
-                src: ['jquery*'],
-                dest: 'dist/',
             },
             images: {
                 expand: true,
@@ -64,7 +58,7 @@ module.exports = function(grunt) {
             options: {
                 processImport: false
             },
-            js: {
+            css: {
                 src: ['dist/gp.tools.css'],
                 dest: 'dist/gp.tools.min.css',
             },

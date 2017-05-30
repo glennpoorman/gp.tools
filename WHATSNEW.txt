@@ -3,8 +3,9 @@ Gp.Tools.V2.1
 * Code cleaned up and optimized for faster downloads.
 * Updated to jQuery 3.2.1
 * Updated to LightBox 2.9.0
-* Updated to MediaElement 4.0.7
+* Updated to MediaElement 4.1.2
 * Added "watch" task to GRUNTFILE.js for automatic rebuilds while editing.
+* Removed jQuery, LightBox, and MediaElement components from src folder and added to "package.json".
 
 Gp.Tools.V2
 -----------
