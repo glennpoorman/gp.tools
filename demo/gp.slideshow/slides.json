@@ -1,0 +1,36 @@
+{ "title" : "slides.json",
+  "thumbscale" : 0.4,
+  "data" :
+  [
+    {
+      "caption"     : "Dandelions",
+      "description" : "Some dandelions",
+      "float"       : "right"
+    },
+    {
+      "caption"     : "Ducks",
+      "description" : "Two ducks in the grass",
+      "float"       : "right"
+    },
+    {
+      "caption"     : "Lily",
+      "description" : "A purple lily",
+      "float"       : "right"
+    },
+    {
+      "caption"     : "Turtle",
+      "description" : "A swimming turtle",
+      "float"       : "right"
+    },
+    {
+      "caption"     : "Turtles",
+      "description" : "Several swimming turtles",
+      "float"       : "right"
+    },
+    {
+      "caption"     : "Rocks",
+      "description" : "Landscape rocks in stream",
+      "float"       : "right"
+    }
+  ]
+}

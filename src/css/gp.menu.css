@@ -1,0 +1,51 @@
+/**************************************************************************************************/
+/* Gp.Menu                                                                                        */
+/**************************************************************************************************/
+
+ul#gp-menu-bar
+{
+  margin                : 0px;               /* It's best to set the list's padding and margin to */
+  padding               : 0px;               /* zero and use the container to position the menu.  */
+}
+
+ul#gp-menu-bar li
+{
+  float                 : left;              /* Float list items left to build horizontal menu.   */
+  list-style            : none;              /* List style set to "none" removes bullets.         */
+  position              : relative;          /* Allow for absolute child positioning.             */
+}
+
+ul#gp-menu-bar li a
+{
+  background            : #000060;           /* Customizable: list anchor background color.       */
+  border-radius         : 4px;               /* Customizable: list anchor border radius.          */
+  color                 : white;             /* Customizable: list anchor text color.             */
+  display               : block;             /* Block display allows us to set width explicitly.  */
+  margin                : 0;                 /* Customizable: zero margins except ...             */
+  margin-right          : 3px;               /* Customizable: small right margin spaces items.    */
+  padding               : 3px 0px;           /* Customizable: list anchor padding.                */
+  text-align            : center;            /* Customizable: list anchor text alignment.         */
+  text-decoration       : none;              /* Customizable: list anchor text decoration.        */
+  white-space           : nowrap;            /* Customizable: don't let menu items wrap.          */
+  width                 : 125px;             /* Customizable: list anchor width.                  */
+}
+
+ul#gp-menu-bar li a:hover
+{
+  background            : #8888BB;           /* Customizable: list anchor hover background color. */
+}
+
+ul#gp-menu-bar div
+{
+  display               : none;              /* Turn off display by default.                      */
+  position              : absolute;          /* Positioned relative to containing list item.      */
+  z-index               : 2;                 /* Make sure popup displays above other page items.  */
+}
+
+ul#gp-menu-bar div a
+{
+  border-radius         : 0px;               /* Customizable: sub-menu anchor border radius.      */
+  padding               : 5px 10px;          /* Customizable: sub-menu anchor padding.            */
+  text-align            : left;              /* Customizable: sub-menu anchor text alignment.     */
+  width                 : auto;              /* Customizable: sub-menu anchor width.              */
+}

@@ -1,0 +1,54 @@
+/**************************************************************************************************/
+/* Gp.AudioPlayer                                                                                 */
+/**************************************************************************************************/
+
+.gp-audio-container
+{
+  display       : table;
+}
+
+.gp-audio-album-title
+{
+  font-size     : 1.5em;
+  margin-bottom : 0.5em;
+}
+
+.gp-audio-title
+{
+  background    : slategray;
+  border-radius : 8px 8px 0 0;
+  box-sizing    : border-box;
+  color         : white;
+  display       : block;
+  font-size     : 14px;
+  font-style    : italic;
+  padding       : 2px;
+  padding-top   : 4px;
+  padding-left  : 8px;
+  width         : 100%;
+}
+
+.mejs-container
+{
+  background    : lightblue;
+  margin        : 0;
+  padding       : 0;
+}
+
+@media only screen and (max-width : 640px)
+{
+  .mejs-container
+  {
+    max-width   : 98%;
+  }
+  .gp-audio-container
+  {
+    display     : block;
+    max-width   : 98%;
+  }
+  .gp-audio-title
+  {
+    box-sizing  : border-box;
+    max-width   : 98%;
+  }
+}

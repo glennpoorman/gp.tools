@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Gp.Tools (V2)</title>
+  <link rel="stylesheet" href="../../dist/gp.tools.css" />
+  <link rel="stylesheet" href="../styles.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+</head>
+
+<body>
+  <header>
+    <div id="banner">
+      Gp.SlideShow
+    </div>
+  </header>
+
+  <div class="main">
+    <h1>LightBox Slide Show Part 1</h1>
+    <h4>Utilities for presenting a slide show in a single page as a series of clickable thumbnails.</h4>
+
+    Using the slideshow utilities, you can create a webpage that includes a set of images grouped
+    together into a single <i>LightBox</i> collection. Any or all of those images can be displayed
+    as thumbnails on the page. Clicking any of the thumbnails will use <i>LightBox</i> to bring up
+    the full size image and allow the user to cycle through the entire collection. Setting up the
+    page is a matter of specifying a container element (a DIV is preferred) in the HTML for every
+    slide in the set and either calling the function <i>addSlide</i> to fill in the details or by
+    specifying all of the info for the page in a JSON file. If the file is named <i>slides.json</i>,
+    it will be automatically loaded on document load.
+
+    <h2>SlideShow vs SlideDeck</h2>
+    <div class="function-description">
+      The slide show tools provide two ways to present slides. The first is the <i>slide show</i>
+      which allows you to sprinkle your slides throughout a document placing them anywhere you like.
+      This is a good way to, for example, write a paper about something and provide small thumbnails
+      throughout the paper that you can click on for the larger image. What separates this from the
+      <i>simpleImage</i> function described in <i>Gp.Basic</i> is that multiple images can be grouped
+      together so that if you click one, the entire collection opens in <i>LightBox</i> and you can
+      cycle through them. In addition, you can hide images. In other words, consider you have a page
+      and you have twenty slides to go with it. You want all twenty slides to be available in the
+      collection when you're using <i>LightBox</i> to cycle but maybe you only want to display six
+      image thumbnails in the page. With the slide show you can put all twenty in the page but the
+      ones you don't want to see can be hidden.
+      <br><br>
+      So how does this all work?
+    </div>
+
+    <div class="function-title">Gp.Slideshow.addSlide(id, group, slide);</div>
+    <div class="function-description">
+      <div id="my-picture-1"></div>
+      <div id="my-picture-2"></div>
+      Inserts an image into a container element and also adds the image into a lightbox collection.
+      <div class="code">
+        <b>id</b> - id of the container element where the image will be inserted.<br>
+        <b>group</b> - the name of the LightBox collection to put the image in.<br>
+        <b>slide</b> - JSON slide object.
+      </div>
+      <div class="code-pre">
+      {
+        /* [optional] Url to image file.
+         * @type String (default = "id.jpg")
+         * Default is created by using the input id and assuming the file type is JPG.
+         */
+        "url" : null,
+
+        /* [optional] Thumbnail caption.
+         * @type String
+         */
+        "caption" : null,
+
+        /* [optional] Full window description.
+         * @type String
+         */
+        "description" : null,
+
+        /* [optional] Thumbnail float property.
+         * @type String (default = "none")
+         * Possible values: "left", "right", "none", "inherit", "hidden"
+         * If "hidden", then no thumbnail is displayed.
+         */
+        "float" : null,
+
+        /* [optional] Scale applied to original image for thumbnail.
+         * @type Number (default = none).
+         * If no thumbscale is given, it is assumed that the thumbnail image will be in a
+         * separate file named the same as the original with "_tn" appended to the filename.
+         */
+        "thumbscale" : null
+      }
+      </div>
+
+      <h4>Usage</h4>
+      To place a slide in your HTML, you need to put a container element in your HTML and then make
+      a JS function call to fill in the rest of the details. Let's suppose that you want to put the
+      images "gp-slide-1.jpg" and "gp-slide-2.jpg" into a collection and display a thumbnail for just
+      the first image. You start by putting two container elements in your HTML and specify ids for
+      the elements. The ids can be anything you like as long as they are unique.
+      <div class="code-pre">
+      &lt;div id="my-picture-1"&gt;&lt;/div&gt;
+      &lt;div id="my-picture-2"&gt;&lt;/div&gt;
+      </div>
+      At the bottom of your page after you've pulled in all of the requisite JS files, you would
+      start another script section and make the function calls to actually fill in the details.
+      <div class="code-pre">
+      Gp.Slideshow.addSlide("my-picture-1", "addSlide",
+        {
+          "url" : "gp-slide-1.jpg",
+          "caption" : "Dandelions",
+          "description" : "Two Dandelions",
+          "float" : "right"
+          "thumbscale" : "0.5"
+        }
+      );
+      Gp.Slideshow.addSlide("my-picture-2", "addSlide",
+        {
+          "url" : "gp-slide-2.jpg",
+          "description" : "Two ducks in the grass",
+          "float" : "hidden"
+        }
+      );
+      </div>
+      Note the absence of some of the JSON properties in those calls. The second slide has the float
+      property set to <i>"hidden"</i> which means there will be no thumbnail display. Since there is
+      no thumbnail display, there is no reason for a "caption" or "thumbscale" property as these
+      properties only apply to the thumbnail display.
+      <br><br>
+      Of course, this is still a lot of code in your HTML file. While the HTML is fairly simple,
+      the JS calls are pretty involved and if you have a lot of slides in the file, this script
+      section is going to get messy and hard to maintain.
+    </div>
+
+    <div class="function-title">Gp.Slideshow.fromJSON(jsonURL);</div>
+    <div class="function-description">
+      <div class="code">
+        <div id="gp-slide-1"></div>
+        <b>jsonURL</b> - URL of the JSON file to load.
+      </div>
+      <div class="code-pre">
+      {
+        /* [required] Group/collection title.
+         * @type String
+         * Will be used as the LightBox collection name.
+         */
+        "title" : null,
+
+        /* [optional] Group/collection description.
+         * @type String
+         */
+        "description" : null,
+
+        /* [optional] Common id of all container elements minus the index.
+         * @type String (default = "gp-slide")
+         */
+        "prefix" : null,
+
+        /* [optional] Scale applied to all slides for thumbnail display.
+         * @type Number (default = none)
+         * Will apply to any slide that doesn't have its own "thumbscale".
+         */
+        "thumbscale" : null,
+        <div id="gp-slide-2"></div>
+        /* [required] Slide data.
+         * @type Array slide objects
+         * Same format as slide object in <i>addSlide</i>
+         */
+        "data" :
+        [
+          {
+            slide object 1
+          },
+          {
+            slide object n
+          }
+        ]
+      }
+      </div>
+      Using the <i>fromJSON</i> function, you can layout all of the data for an entire collection
+      of slides in a separate JSON file and then make just one JS call in our HTML page to load that
+      JSON file.
+
+      <h4>Usage</h4>
+      The setup in your HTML is pretty much the same as in <i>addSlide</i> except that the formatting
+      of the container element ids is a little more strict. Ideally you will have as many container
+      elements in your page as there are slide objects in the JSON file. The id of each element must
+      be <i>"prefix-n"</i> where <i>"prefix"</i> is a JSON property and <i>"n"</i> is the 1-based
+      index of the slide object in the array. Suppose then that you wanted to put the same two slides
+      as in the <i>"addSlide"</i> sample but use a JSON file instead. The JSON in the file would then
+      look as follows:
+      <div class="code-pre">
+      <div id="gp-slide-3"></div>
+      {
+        "title" : "fromJSON",
+        "thumbscale" : "0.4",
+        "data" :
+        [
+          {
+            "url" : "gp-slide-1.jpg",
+            "caption" : "Dandelions",
+            "description" : "Two dandelions",
+            "float" : "right"
+          },
+          {
+            "url" : "gp-slide-2.jpg",
+            "description" : "Two ducks in the grass",
+            "float" : "hidden"
+          }
+        ]
+      }
+      </div>
+      This is a good place to point out a handy shortcut. If you look back at the documentation for
+      the slide JSON object, note that the <i>"url"</i> property is optional. If no url is given,
+      it is assumed that the image file is a JPG file and is named the same as the container element
+      id. So in this case, we're already taking the default <i>"gp-slide"</i> prefix and our files
+      are JPG files named using the prefix. Taking that into account, the JSON can be thinned out a
+      bit removing the "url" property.
+      <div class="code-pre">
+      <div id="gp-slide-4"></div>
+      {
+        "title" : "fromJSON",
+        "thumbscale" : "0.4",
+        "data" :
+        [
+          {
+            "caption" : "Dandelions",
+            "description" : "Two dandelions",
+            "float" : "right"
+          },
+          {
+            "description" : "Two ducks in the grass",
+            "float" : "hidden"
+          }
+        ]
+      }
+      </div>
+      The next step would be to put the container elements in your HTML. The elements don't have to
+      be grouped together. The only thing that matters is that they exist and have the correct id
+      format. Assuming that you've taken the "gp-slide" default as the prefix, the container would
+      look like:
+      <div id="gp-slide-5"></div>
+      <div class="code-pre">
+      &lt;div id="gp-slide-1"&gt;&lt;/div&gt;
+      &lt;div id="gp-slide-2"&gt;&lt;/div&gt;
+      </div>
+      With the JSON file and the container elements all in place, putting it all together is now
+      simply a matter of making a single JavaScript call at the bottom of your page to load the
+      file and insert the slides.
+      <div class="code">
+        Gp.SlideShow.fromJSON("myslides.json");
+      </div>
+    </div>
+
+    <div class="function-title">slides.json</div>
+    <div class="function-description">
+      By taking special care in naming your JSON file, you can make things even easier. When the
+      file <i>gp.tools.js</i> is loaded, the location of the page is automatically scanned for a
+      file named <i>slides.json</i>. If it is found, then it is loaded automatically.
+      <h4>Usage</h4>
+      The HTML and the contents of the file are exactly the same as with the <i>fromJSON</i>
+      description. Here, however, you make sure the name of the JSON file is <i>slides.json</i>.
+      Remove the call to <i>fromJSON</i> from your script section as this will now happen
+      automatically.
+      <br><br>
+      That's it!
+    </div>
+
+    <h2>Customization</h2>
+    <div class="function-description">
+      Like the other utilities, there are some styles included in <i>gp.tools.css</i> that are used
+      in the slideshow code. You can use these styles as is or override them where you see fit.
+      <br><br>
+      When a slide is added to the page, the style <i>"gp-slide-image"</i> is automatically applied
+      to the container element (the DIV). The default implementations include in the stock CSS file
+      are:
+      <div class="code-pre">
+      <div id="gp-slide-6"></div>
+      .gp-slide-image
+      {
+        display : inline-block;
+        padding : 8px;
+        text-align : center;
+      }
+      .gp-slide-image img
+      {
+        border : 0;
+      }
+      </div>
+      The display is set to <i>inline-block</i> in order to make the floating work better. A little
+      bit of padding is added so that text wrapped around the image doesn't butt right up against
+      the image. The text alignment is centered so as to center the caption in the thumbnail. An
+      additional style is set such that any images within the container do not display a border.
+      <br><br>
+      Of course, you are free to change any and all of these properties as you see fit.
+    </div>
+  </div>
+
+  <footer>
+    Powered by HTML5, Javascript, jQuery, Lightbox, MediaElement, and Gp.Tools.
+    <span id="gp-upgrade"></span>
+    <br><br>
+    <span id="gp-copyright"></span>
+  </footer>
+</body>
+
+<script type="text/javascript" src="../../dist/jquery-1.12.2.min.js"></script>
+<script type="text/javascript" src="../../dist/lightbox/js/lightbox-plus-jquery.js"></script>
+<script type="text/javascript" src="../../dist/gp.tools.js"></script>
+<script>
+  Gp.Slideshow.addSlide("my-picture-1", "addSlide",
+    {
+      "url" : "gp-slide-1.jpg",
+      "caption" : "Dandelions",
+      "description" : "Two dandelions",
+      "float" : "right",
+      "thumbscale" : 0.5
+    }
+  );
+  Gp.Slideshow.addSlide("my-picture-2", "addSlide",
+    {
+      "url" : "gp-slide-2.jpg",
+      "description" : "Two ducks in the grass",
+      "float" : "hidden"
+    }
+  );
+</script>
+</html>

@@ -1,0 +1,112 @@
+/**************************************************************************************************/
+/* Gp.ActiveBanner                                                                                */
+/**************************************************************************************************/
+
+a#gp-menu-icon
+{
+  background      : url(gp-menu-icon-white.png) center; /* Customizable: menu button image.       */
+  display         : none;                    /* Initial display is turned off.                    */
+  float           : right;                   /* Customizable: float image right in title section. */
+  height          : 40px;                    /* Customizable: image height.                       */
+  width           : 40px;                    /* Customizable: image width.                        */
+}
+
+section#gp-nav-section
+{
+  background      : #000060;                 /* Customizable: bottom banner background color.     */
+  padding         : 4px;                     /* Customizable: bottom banner padding.              */
+}
+
+section#gp-title-section
+{
+  background      : #000060;                 /* Customizable: top banner background color.        */
+  color           : white;                   /* Customizable: top banner text color.              */
+  font-size       : 2.25em;                  /* Customizable: top banner font size.               */
+  padding         : 4px;                     /* Customizable: top banner padding.                 */
+  text-align      : center;                  /* Customizable: top banner content alignment.       */
+}
+
+nav#gp-active-nav
+{
+  display         : table;                   /* Customizable: nav display setting.                */
+  margin          : 0px auto;                /* Customizable: nav margin.                         */
+  padding         : 0;                       /* Customizable: nav padding.                        */
+}
+
+/* NOTE: In the style below, we default the menu bar to being hidden. In this one instance we use
+ *       a "mobile first" approach. This is because the jQuery function used to turn the menu bar
+ *       on and off doesn't play nicely with the media queries below. By defaulting to hidden and
+ *       then using a media query to turn this on for larger screens, we make sure that we'll never
+ *       get into a state where we go full screen and the menu does not appear.
+ */
+ul#gp-menu-bar
+{
+  display         : none;                    /* Initially turn off menu bar.                      */
+}
+
+/* Below we setup a media query for screens with a larger width than 640px. As described above, the
+ * jQuery function to turn the menu on and off and media queries don't play nicely. So we default
+ * menu bar to being hidden and use this query to turn it on. Note that we also use the !imporant
+ * designation to make sure this overrides any other style settings.
+ */
+@media only screen and (min-width : 640px)
+{
+  ul#gp-menu-bar
+  {
+    display       : inherit !important;      /* Turn on menu bar for screens > 640px.             */
+  }
+}
+
+/* Below we setup a media query for screens with a smaller width than 640px. These styles will kick
+ * in when the page is displayed on a small mobile device such as a smart phone.
+ */
+@media only screen and (max-width : 640px)
+{
+  a#gp-menu-icon
+  {
+    display       : inline-block;            /* Turn on mobile menu icon.                         */
+  }
+
+  section#gp-nav-section
+  {
+    padding       : 0;                       /* Customizable: bottom banner padding.              */
+  }
+
+  section#gp-title-section
+  {
+    text-align    : left;                    /* Customizable: top banner content alignment.       */
+  }
+
+  nav#gp-active-nav
+  {
+    width         : 100%;                    /* Nav width setting (full width on mobile).         */
+  }
+
+  ul#gp-menu-bar li
+  {
+    display       : block;                   /* Set list item display to block.                   */
+    float         : none;                    /* Remove float from list items.                     */
+  }
+
+  ul#gp-menu-bar li a
+  {
+    border-radius : 0;                       /* Customizable: list anchor border radius.          */
+    margin-right  : 0;                       /* Customizable: list anchor horizontal spacing.     */
+    padding       : 5px 10px;                /* Customizable: list anchor padding.                */
+    text-align    : left;                    /* Customizable: list anchor text alignment.         */
+    width         : inherit;                 /* List anchor width (clear for full mobile screen). */
+  }
+
+  ul#gp-menu-bar div
+  {
+    position      : inherit;                 /* Set position back to default static value.        */
+    width         : 100%;                    /* Set width to fill mobile screen.                  */
+  }
+
+  ul#gp-menu-bar div a
+  {
+    padding       : 5px;                     /* Customizable: sub-menu anchor padding.            */
+    padding-left  : 30px;                    /* Sub-menu anchor left padding indents selections.  */
+    width         : auto;                    /* Sub-menu anchor should fill mobile screen.        */
+  }
+}

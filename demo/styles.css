@@ -1,0 +1,153 @@
+body
+{
+  font-family    : Helvetica, Arial;
+  font-size      : 14px;
+  margin         : 0;
+  padding        : 0;
+}
+
+div.code
+{
+  font-family    : "Courier New", Courier, monospace;
+  font-size      : 0.9em;
+  margin         : 18px;
+}
+
+div.code-pre
+{
+  font-family    : "Courier New", Courier, monospace;
+  font-size      : 0.9em;
+  margin         : 0;
+  white-space    : pre-wrap;
+}
+
+div.function-description
+{
+  margin         : 18px;
+}
+
+div.function-title
+{
+  font-family    : "Courier New", Courier, monospace;
+  font-size      : 1.3em;
+  font-weight    : bold;
+  margin-top     : 25px;
+}
+
+div.gp-audio-container
+{
+  margin-bottom  : 12px;
+}
+
+#gp-audio-album
+{
+  background     : #303060;
+  border-radius  : 8px;
+  color          : #CCC;
+  padding        : 1.0em;
+  padding-bottom : 0.5em;
+  width          : 400px;
+}
+
+.gp-simple-image
+{
+  font-size      : 0.8em;
+  padding        : 8px;
+}
+
+#gp-slide-deck
+{
+  margin         : 16px auto;
+  max-width      : 800px;
+}
+
+.gp-slide-image
+{
+  font-family    : Helvetica, Arial;
+  font-size      : 0.91em;
+}
+
+div.main
+{
+  margin         : 8px;
+  margin-bottom  : 25px;
+}
+
+footer
+{
+  border-top     : 1px solid #808080;
+  color          : #808080;
+  font-size      : 0.75em;
+  margin         : 8px;
+  margin-top     : 16px;
+  padding-top    : 6px;
+}
+
+div#banner
+{
+  background     : #000060;
+  color          : white;
+  font-size      : 2.25em;
+  padding        : 12px;
+  text-align     : center;
+}
+
+h1
+{
+  font-size      : 2.0em;
+}
+
+h2
+{
+  font-size      : 1.5em;
+  margin-top     : 1.2em;
+}
+
+h3
+{
+  font-size      : 1.17;
+}
+
+h4
+{
+  font-size      : 1.0;
+  margin-bottom  : 0.75em;
+}
+
+h5
+{
+  font-size      : 0.83;
+}
+
+h6
+{
+  font-size      : 0.67;
+}
+
+nav
+{
+  display        : table;
+  margin-bottom  : 0px;
+  margin-top     : 5px;
+  margin-right   : auto;
+  margin-left    : auto;
+  padding        : 0;
+}
+
+@media only screen and (max-width : 640px)
+{
+  body
+  {
+    font-size    : 16px;
+  }
+
+  div#banner
+  {
+    text-align   : left;
+  }
+
+  img#picture_
+  {
+    max-width    : 98%;
+  }
+}

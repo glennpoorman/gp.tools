@@ -1,0 +1,18 @@
+{ "title"  : "Test Audio",
+  "prefix" : "audio-container",
+  "data"   :
+  [
+    {
+      "title"  : "Gibbon Monkey",
+      "url"    : "gibbon-monkey.mp3"
+    },
+    {
+      "title"  : "Puppy Barking",
+      "url"    : "puppy-barking.mp3"
+    },
+    {
+      "title"  : "Rooster",
+      "url"    : "rooster.mp3"
+    }
+  ]
+}

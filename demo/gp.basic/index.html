@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Gp.Tools (V2)</title>
+  <link rel="stylesheet" href="../../dist/gp.tools.css" />
+  <link rel="stylesheet" href="../styles.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+</head>
+
+<body>
+  <header>
+    <div id="banner">
+      Gp.Basic
+    </div>
+  </header>
+
+  <div class="main">
+    <h1>The Basic Toolset</h1>
+
+    <div class="function-title">Gp.Basic.checkForHTML5()</div>
+    <div class="function-description">
+      Returns <i>true</i> if the browser appears to support HTML5 and <i>false</i> if it doesn't.
+    </div>
+
+    <div class="function-title">Gp.Basic.html5Message()</div>
+    <div class="function-description">
+
+      Checks to see if the browser supports HTML5 and if it doesn't, looks for an element in the
+      page with the id <i>"gp-upgrade"</i> and displays a message recommending that the user upgrade
+      their browser to the 21st century.
+      <br><br>
+      Note that this function is automatically called on document load meaning there will never be a
+      reason to call it directly. To take advantage, you only need to put an element (such as a DIV
+      or SPAN) in your document with the id <i>"gp-upgrade"</i> as follows:
+      <div class="code">&lt;span id="gp-upgrade"&gt;&lt;/span&gt;</div>
+      With that element in place, the rest is automatic. Honestly ... at this point none of these
+      websites are money making ventures for me so I have no interest in supporting someone who
+      won't accept a free browser upgrade in order to get an up to date web experience. I mean
+      really!
+    </div>
+
+    <div class="function-title">Gp.Basic.emailLink(id, user, host, link)</div>
+    <div class="function-description">
+      Inserts an email into your HTML in such a way that makes it difficult for spam bots to find.
+      <div class="code">
+        <b>id</b> - id of the element to add the email link to.<br>
+        <b>user</b> - user name portion of the email address.<br>
+        <b>domain</b> - domain name portion of the email address.<br>
+        <b>link</b> - <i>[optional]</i> link text (defaults = email address).
+      </div>
+      To use this function, you first need an element in the page where the address will be placed
+      and that element must have an id.
+      <div class="code">&lt;span id="mail-link"&gt;&lt;/span&gt;</div>
+      Next the function needs to be called. The arguments to the function are the element id, the
+      user name, the domain name, and the optional link text. As an example, if I wanted to send an
+      email to glenn@gp_tools.com, I would call:
+      <div class="code">Gp.Basic.emailLink("mail-link", "glenn", "gp_tools.com");</div>
+      Or if I wanted something besides the email address as the link text, I would add that as a
+      fourth argument.
+      <div class="code">Gp.Basic.emailLink("mail-link", "glenn", "gp_tools.com", "Email me here.");</div>
+      The result should look something like:
+      <br><br>
+      Email: <span id="mail-link"></span>
+    </div>
+
+    <div class="function-title">Gp.Basic.fixEmailLinks()</div>
+    <div class="function-description">
+      Looks for all elements in a page using the class <i>"gp-send-mail"</i> and for each element
+      found, inserts an email link into the element using custom data attributes specified on the
+      element itself. Like the previous function, the email is inserted in such a way that makes
+      it difficult for spam bots to find.
+      <br><br>
+      Note that this function is automatically called on document load meaning there will never be
+      a reason to call it directly. To take advantage, you need to specify an element (usually a
+      SPAN element) in your document for each email link in the page. Each of those elements must
+      use the class <i>"gp-send-mail"</i>. At a minimum, each element must contain a custom attribute
+      for the user name and another custom attribute for the domain name. You can also specify an
+      optional third custom attribute containing the link text. If you leave that last attribute
+      off, the email address will be used.
+      <br><br>
+      So let's say you want put in an email link just like in the last function, you would need
+      only the following HTML.
+      <div class="code">
+        &lt;span class="gp-send-mail" data-user="glenn" data-domain="gp_tools.com"&gt;&lt;/span&gt;
+      </div>
+      Or if you wanted an additional link but wanted to specify link text other than the email
+      address, you can add a custom attribute for that as in the following.
+      <div class="code">
+        &lt;span class="gp-send-mail" data-user="glenn" data-domain="gp_tools.com" data-link="Mail here!"&gt;&lt;/span&gt;
+      </div>
+      That's it. The function is called automatically on document load leaving the two elements to
+      display as follows:
+      <br><br>
+      <span class="gp-send-mail" data-user="glenn" data-domain="gp_tools.com"></span><br>
+      <span class="gp-send-mail" data-user="glenn" data-domain="gp_tools.com" data-link="Mail here!"></span>
+    </div>
+
+    <div class="function-title">Gp.Basic.insertCopyright()</div>
+    <div class="function-description">
+      Looks for an element with the id <i>"gp-copyright"</i> and if such an element is found,
+      inserts a copyright message into that element based on the year of today's date.
+      <br><br>
+      Note that this function is automatically called on document load meaning there will never be
+      a reason to call it directly. To take advantage, you need an element (such as a DIV or SPAN
+      in your document with the id <i>"gp-copyright"</i>. Additionally, you need to specify who to
+      attribute the copyright to. This can be done through an additional attribute on the element
+      <i>"data-who"</i>. So if I want to attribute a copyright to myself, I would put the following
+      in my page:
+      <div class="code">&lt;span id="gp-copyright" data-who="Glenn Poorman"&gt;&lt;/span&gt;</div>
+      With that element in place, the rest is automatic. See the very bottom of this page to see
+      what the output looks like.
+    </div>
+
+    <div class="function-title">Gp.Basic.openWindow(url, width, height, scrollbars)</div>
+    <div class="function-description">
+      Allows for another browser window to be opened using a specified url.
+      <div class="code">
+        <b>url</b> - url of the file to open in the new browser window.<br>
+        <b>width</b> - width of new browser window.<br>
+        <b>height</b> - height of new browser window.<br>
+        <b>scrollbars</b> - <i>[optional]</i> display scrollbars ("true" or "false").
+      </div>
+      This function can be called from another script or can be called right in the page. I've
+      frequently used this function in the <i>"onclick"</i> handler for an HTML anchor. The link
+      below was written:
+      <div class="code">
+        &lt;a href="#noop" onclick="Gp.Basic.openWindow('popup.html',500,600,true);"&gt;Click Me&lt;/a&gt;
+      </div>
+      Click the link below and watch the new window open up.
+      <br><br>
+      <a href="#noop" onclick="Gp.Basic.openWindow('popup.html',500,600,true);">Click Me</a>
+      <br><br>
+      Before <i>LightBox</i> came along, I used to use this to popup full sized images from
+      thumbnails.
+    </div>
+
+    <div class="function-title">Gp.Basic.randomImage(id, howmany, location, suffix)</div>
+    <div class="function-description">
+      The random image function allows the website developer to display one out of a collection of
+      images but have the specific image in the collection chosen at random every time the page is
+      reloaded.
+      <div class="code">
+        <b>id</b> - id of the &lt;img&gt; element that will display the random image.<br>
+        <b>howmany</b> - number of images in the collection to choose from.<br>
+        <b>location</b> - location of the images (optional, default = same as page).<br>
+        <b>suffix</b> - <i>[optional]</i> suffix of the image file (default = "jpg").
+      </div>
+      In order for this to work, the images must all reside in the same location, must be of the
+      same format (all of the file suffixes must match), and must follow a specific naming criteria.
+      The images must be named using the image element id followed by a dash and a 1-based index.
+      For example, if you have a collection of six images and the name you pass in is "picture",
+      then it will be assumed that your collection of images looks like:
+      <div class="code">
+        picture-1.jpg<br>
+        picture-2.jpg<br>
+        picture-3.jpg<br>
+        picture-4.jpg<br>
+        picture-5.jpg<br>
+        picture-6.jpg<br>
+      </div>
+      Next, is the image placement. This is done by simply putting an IMG element in your page and
+      setting the element id to the common image name (minus any extra digits). Note that this is
+      crucial. If the id and the name do not match, nothing will display. Going back to the six
+      image collection shown above then, you would put the following in your page:
+      <div class="code">&lt;img id="picture"&gt;</div>
+      Lastly you need to call the function. This can either be done inline within a &lt;script&gt;
+      tag or it can be done in the document ready function. I prefer the latter as it allows the
+      rest of the page to load before downloading the image.
+      <div class="code">Gp.Basic.randomImage("picture", 6, ".", "jpg");</div>
+      Note that since the last argument defaults to "jpg" and the files shown here are "jpg" files,
+      this code could be written:
+      <div class="code">Gp.Basic.randomImage("picture", 6, ".");</div>
+      Lastly, since the location parameter is also optional and defaults to the same location as
+      the page, we could have written:
+      <div class="code">Gp.Basic.randomImage("picture", 6);</div>
+      The result is shown below. Refresh the page to watch the image change.
+      <br><br>
+      <img id="picture">
+    </div>
+
+    <div class="function-title">Gp.Basic.simpleImage(id, caption, thumbscale, float, description)</div>
+    <div class="function-description">
+    <div id="picture-1"></div>
+      <h4>Requires <i>LightBox</i></h4>
+      The simple image function is used to place a simple popup image into a web page. The single
+      image file is displayed as a thumbnail by applying the scale parameter to the original width
+      and height of the image. A link is also created so that the image will display at its default
+      size when clicked. This function uses <i>"LightBox"</i> to display the image and it is assumed
+      that the lightbox JS and CSS files are loaded.
+      <div class="code">
+        <b>id</b> - id of the element to contain the image and the url of the image file.<br>
+        <b>caption</b> - caption to display under the thumbnail image.<br>
+        <b>thumbscale</b> - scale applied to image width and height for thumbnail display.<br>
+        <b>float</b> - <i>[optional]</i> CSS "float" property to set on the element (default = "none").<br>
+        <b>description</b> - <i>[optional]</i> text that will appear in the window when the image is selected.
+      </div>
+      Placement is done by putting a DIV element in your page and setting the id of the element to
+      the relative image url. The file suffix on the element id is optional. If no suffix is given,
+      ".jpg" is assumed.
+      <br><br>
+      The picture on the upper right (for example), is "picture-1.jpg" from the collection above.
+      The element for that picture could be written in one of two ways:
+      <div class="code">&lt;div id="picture-1.jpg"&gt;&lt;/div&gt;</div>
+      Since the default file suffix is "jpg", the element could also be written:
+      <div class="code">&lt;div id="picture-1"&gt;&lt;/div&gt;</div>
+      Note that when the function call is made, the ids must match exactly.
+      <br><br>
+      <div id="picture-2"></div>
+      Next, the function must be called for each image in your page. For the image we just talked
+      about then, the function call would look like:
+      <div class="code">Gp.Basic.simpleImage("picture-1.jpg", "Simple Image", 0.4, "right", "Some dandelions");</div>
+      Or if you left the file suffix off:
+      <div class="code">Gp.Basic.simpleImage("picture-1", "Simple Image", 0.4, "right", "Some dandelions");</div>
+      The arguments are the id/url followed by a caption that will be displayed just under the
+      image. Note that as in the element placement, the file suffix is optional but it is important
+      to note that the id in the function call and the id in the DIV element must match exactly. The
+      next argument is the scale that is applied to the image width and height in order to display
+      the thumbnail. Last is the float property. This can have any value that the CSS <i>"float"</i>
+      property can have. The argument can also be left off in which case the default of <i>"none"</i>
+      will be used.
+
+      <h4>CSS</h4>
+      The <i>simpleImage</i> function will automatically add the class <i>gp-simple-image</i> to the
+      containing element allowing control over all manner of formatting options. The default style
+      is shown below:
+      <div class="code-pre">
+      .gp-simple-image
+      {
+        text-align : center;
+      }
+      </div>
+      Note the two images floated in these paragraphs. Click either image and watch lightbox display
+      the full size image.
+    </div>
+  </div>
+
+  <footer>
+    Powered by HTML5, Javascript, jQuery, Lightbox, MediaElement, and Gp.Tools.
+    <span id="gp-upgrade"></span>
+    <br><br>
+    <span id="gp-copyright" data-who="Glenn Poorman"></span>
+  </footer>
+</body>
+
+<script type="text/javascript" src="../../dist/jquery-1.12.2.min.js"></script>
+<script type="text/javascript" src="../../dist/lightbox/js/lightbox-plus-jquery.js"></script>
+<script type="text/javascript" src="../../dist/gp.tools.js"></script>
+
+<script>
+  $(function() {
+
+    // Look for the image element with the id "picture" and set the actual image via random
+    // selection from a like named collection of images.
+    //
+    Gp.Basic.randomImage("picture", 6);
+
+    // Add single images to the webpage such that a thumbnail image displays in the page scaled
+    // using the given scale value but will open full size in LightBox when the image is clicked.
+    //
+    Gp.Basic.simpleImage("picture-1", "Simple image floated right", 0.4, "right", "Some dandelions");
+    Gp.Basic.simpleImage("picture-2", "Simple Image floated left", 0.4, "left", "Two ducks");
+
+    // Add the given email address to the element with the id "mail-link". This allows you to add
+    // an email address to your webpage such that the bots that scour web pages looking for email
+    // adresses won't find it.
+    //
+    Gp.Basic.emailLink("mail-link", "glenn", "gp_tools.com");
+  });
+</script>
+
+</html>

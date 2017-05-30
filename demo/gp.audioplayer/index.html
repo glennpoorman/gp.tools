@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Gp.Tools (V2)</title>
+  <link rel="stylesheet" href="../../dist/gp.tools.css" />
+  <link rel="stylesheet" href="../styles.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+</head>
+
+<body>
+  <header>
+    <div id="banner">
+      Gp.AudioPlayer
+    </div>
+  </header>
+
+  <div class="main">
+    <h1>HTML Audio Player</h1>
+    <h4>Utilities for displaying audio elements in a page using <i>MediaElement</i></h4>
+
+    Using the audio player utilities, you can create a web page that contains any number of audio
+    elements. Setting up the page is a matter of specifying a container element int he HTML for
+    every desired audio element and filling in the details using either a JavaScript call or a JSON
+    file of audio objects. If the file is named <i>audio.json</i>, it will be automatically loaded
+    on document load.
+
+    <div class="function-title">Gp.AudioPlayer.addPlayer(id, audioFile);</div>
+    <div class="function-description">
+      <h4>Requires <i>MediaElement</i></h4>
+      Adds an audio player to the page as a child of the given container element using the data in
+      the given JSON audio file object.
+      <div class="code">
+        <b>id</b> - id of the container element where the audio element will be inserted.<br>
+        <b>audioFile</b> - JSON audio file object contains the audio file data.
+      </div>
+      <div class="code-pre">
+      {
+        /* [required] Audio file url.
+         * @type String
+         */
+        "url" : null,
+
+        /* [optional] Title.
+         * @type String
+         */
+        "title" : null,
+
+        /* [optional] Artist.
+         * @type String
+         */
+        "artist" : null,
+
+        /* [optional] Album.
+         * @type String
+         */
+        "album" : null,
+
+        /* [optional] Play on load.
+         * @type Boolean (default = "false")
+         */
+        "autoplay" : null,
+
+        /* [optional] Initial volume.
+         * @type Integer (0 to 100, default = "80")
+         */
+        "volume" : null
+      }
+      </div>
+
+      <h4>Usage</h4>
+      To use the <i>addPlayer</i> function, the page needs a container element (preferably a DIV)
+      for the audio player and the element must have a unique id.
+      <div class="code-pre">
+      &lt;div id="some-id"&gt;&lt;/div&gt;
+      </div>
+      With any container elements in place, the audio elements are inserted by calling the
+      <i>addPlayer</i> function for each container at the bottom of the page after all of the
+      requisite JS files have been pulled in.
+      <div class="code-pre">
+      Gp.AudioPlayer.addPlayer("some-id",
+        {
+          "url" : "gibbon-monkey.mp3",
+          "title" : "Gibbon Monkey"
+        }
+      );
+      </div>
+      <div id="some-id"></div>
+      Note that all but one of the properties in the JSON object are optional. In the absence of
+      those properties, <i>autoplay</i> defaults to <i>false</i> and <i>volume</i> defaults to
+      <i>80</i>. In the case where the <i>title</i> property is not specified, the default value
+      is null which also results in the top portion of the resulting audio player being left off.
+      In the sample below, we put the following in the HTML:
+      <div class="code-pre">
+      &lt;div id="no-title"&gt;&lt;/div&gt;
+      </div>
+      At the bottom of the page, we made the following call:
+      <div class="code-pre">
+      Gp.AudioPlayer.addPlayer("no-title",
+        {
+          "url" : "puppy-barking.mp3"
+        }
+      );
+      </div>
+      <div id="no-title"></div>
+    </div>
+
+    <div class="function-title">Gp.AudioPlayer.fromJSON(jsonURL);</div>
+    <div class="function-description">
+      <h4>Requires <i>MediaElement</i></h4>
+      Loads a series of audio file object from the specified JSON file and add the audio elements
+      to elements on the current web page.
+      <div class="code">
+        <b>jsonURL</b> - url of the JSON file to load.
+      </div>
+      <div class="code-pre">
+      {
+        /* [optional] Collection/album title.
+         * @type String
+         */
+        "title" : null,
+
+        /* [optional] Artist.
+         * @type String
+         */
+        "artist" : null,
+
+        /* [optional] Common id of all container elements minus the index.
+         * @type String (default = "gp-audio-container")
+         */
+        "prefix" : null,
+
+        /* [required] Audio file data.
+         * @type Array of audio file objects
+         * Same format as audio object in <i>addPlayer</i>
+         */
+        "data" :
+        [
+          {
+            audio object 1
+          },
+          {
+            audio object n
+          },
+        ]
+      }
+      </div>
+      If you have several audio elements in your page, using <i>addPlayer</i> for each element can
+      get quite messy. Using <i>fromJSON</i> allows you to simply put the audio containers in your
+      page, define all of the audio objects in a JSON file, and make one call to put it all together.
+
+      <h4>Usage</h4>
+      The setup in your HTML is pretty much the same as in <i>addPlayer</i> except that the
+      formatting of the container element ids is a little more strict. Ideally you will have as
+      many container elements in your page as there are audio file objects in the JSON file. The id
+      of each element must be <i>"prefix-n"</i> where <i>"prefix"</i> is a JSON property and
+      <i>"n"</i> is the 1-based index of the audio file object in the array. Suppose then that you
+      wanted to put three audio objects in your page. You would start by laying out those objects
+      in your JSON file as follows.
+      <div class="code-pre">
+      {
+        "title" : "Test Audio",
+        "prefix" : "audio-container",
+        "data" :
+        [
+          {
+            "title" : "Gibbon Monkey",
+            "url" : "gibbon-monkey.mp3"
+          },
+          {
+            "title" : "Puppy Barking",
+            "url" : "puppy-barking.mp3"
+          },
+          {
+            "title" : "Rooster",
+            "url" : "rooster.mp3"
+          }
+        ]
+      }
+      </div>
+      The next step would be to put the container elements in your HTML. The elements don't have to
+      be grouped together. The only thing that matters is that they exist and have the correct id
+      format. Again note the id matches the <i>"prefix"</i> property from the JSON followed by a
+      dash and the index of the item in the array.
+      <div class="code-pre">
+      &lt;div id="audio-container-1"&gt;&lt;/div&gt;
+      &lt;div id="audio-container-2"&gt;&lt;/div&gt;
+      &lt;div id="audio-container-3"&gt;&lt;/div&gt;
+      </div>
+      With the JSON file and the container elements all in place, putting it all together is now
+      simply a matter of making a single JavaScript call at the bottom of your page to load the
+      file and insert the audio elements.
+      <div class="code-pre">
+      Gp.AudioPlayer.fromJSON("myaudio.json");
+      </div>
+    </div>
+
+    <div class="function-title">audio.json</div>
+    <div class="function-description">
+      By taking special care in naming your JSON file, you can make things even easier. When the
+      file <i>gp.tools.js</i> is loaded, the location of the page is automatically scanned for a
+      file named <i>audio.json</i>. If it is found, then it is loaded automatically.
+      <h4>Usage</h4>
+      The HTML and the contents of the file are exactly the same as with the <i>fromJSON</i>
+      description. Here, however, you make sure the name of the JSON file is <i>audio.json</i>.
+      Remove the call to <i>fromJSON</i> from your script section as this will now happen
+      automatically.
+      <br><br>
+      That's it!
+      <br><br>
+      <div id="audio-container-1"></div>
+      <div id="audio-container-2"></div>
+      <div id="audio-container-3"></div>
+    </div>
+
+    <h2>Customization</h2>
+    <div class="function-description">
+      Like the other utilities, there are some styles included in <i>gp.tools.css</i> that are used
+      in the audio player code. You can use these styles as is or override them as you see fit.
+      <br><br>
+      When an audio player is added to the page, the style <i>.gp-audio-container</i> is automatically
+      applied to the container element. The default implementation sets the display type to make the
+      element easier to manipulate and float.
+      <div class="code-pre">
+      .gp-audio-container
+      {
+        display : table;
+      }
+      </div>
+      Two other styles are also available for modification.
+      <div class="code">
+        <b>.gp-audio-title</b> - the SPAN element containing the title.<br>
+        <b>.mejs-container</b> - the MediaElement container (the actual player).
+      </div>
+      You can play with these in order to alter things like colors of your display in order to make
+      the audio player fit in better with your own site's color choices.
+      <br><br>
+      In this sample, we slightly altered the bottom margin of the audio container to provide some
+      padding in between players.
+      <div class="code-pre">
+      .gp-audio-container
+      {
+        margin-bottom : 12px;
+      }
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    Powered by HTML5, Javascript, jQuery, Lightbox, and gp.tools.js.
+    <br><br>
+    Sound samples recorded by Daniel Simon and Mike Koenig
+    <span id="gp-upgrade"></span>
+    <br><br>
+    <span id="gp-copyright"></span>
+  </footer>
+</body>
+
+<script type="text/javascript" src="../../dist/jquery-1.12.2.min.js"></script>
+<script type="text/javascript" src="../../dist/mediaelement/mediaelement-and-player.js"></script>
+<script type="text/javascript" src="../../dist/gp.tools.js"></script>
+<script>
+$(function() {
+  Gp.AudioPlayer.addPlayer("some-id", { "url" : "gibbon-monkey.mp3", "title" : "Gibbon Monkey" });
+  Gp.AudioPlayer.addPlayer("no-title", { "url" : "puppy-barking.mp3" });
+});
+</script>
+</html>

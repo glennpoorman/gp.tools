@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Gp.Tools (V2)</title>
+  <link rel="stylesheet" href="../../dist/gp.tools.css" />
+  <link rel="stylesheet" href="../styles.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+</head>
+
+<body>
+  <header>
+    <section id="gp-title-section">
+      Gp.ActiveBanner
+    </section>
+    <section id="gp-nav-section">
+      <nav>
+        <ul>
+          <li><a href="#">One</a>
+          <li><a href="#">Two</a>
+              <div>
+                <a href="#">Two-A</a>
+                <a href="#">Two-B</a>
+              </div>
+          </li>
+          <li><a href="#">Three</a>
+              <div>
+                <a href="#">Three-A</a>
+                <a href="#">Three-B</a>
+                <a href="#">Three-C</a>
+                <a href="#">Three-D</a>
+                <a href="#">Three-E</a>
+              </div>
+          </li>
+          <li><a href="#">Four</a>
+        </ul>
+      </nav>
+    </section>
+  </header>
+
+  <div class="main">
+    <h1>Responsive Navigation</h1>
+    <h4>Responsive banner and menu for compatibility with mobile devices.</h4>
+
+    The active banner expands on the <i>Gp.Menu</i> tools to make websites compatible with mobile
+    devices. The banner is split into two halves, a title section and a navigation section. The
+    developer can create any type of title (text based, an image, etc) and the navigation section
+    contains the "gp-menu-bar" element from <i>gp.menu.js</i>.
+    <br><br>
+    To watch the responsive banner in action, you can change your browser to mobile display (if
+    your browser supports this as a development tool) or you can simply shrink the width of your
+    browser window so that it is less than 640 pixels.
+
+    <h2>The HTML</h2>
+    The HTML is still fairly simple but requires a little more care than the simple menu sample.
+    For the banner to work, there must be two sections (you can use <i>section</i> or <i>div</i>
+    elements) defined. One is the title section and the other is the navigation section.
+    <div class="code-pre">
+    &lt;section id="gp-title-section"&gt;
+      ...
+    &lt;/section&gt;
+    &lt;section id="gp-nav-section"&gt;
+      ...
+    &lt;/section&gt;
+    </div>
+    The title section can contain whatever you want to use as a title be it a text string or some
+    other type of object such as an image. It can even be empty but the section must exist in order
+    to serve as a place holder for the mobile menu icon. On this page we simply use the title
+    <i>gp.activebanner</i>.
+    <div class="code-pre">
+    &lt;section id="gp-title-section"&gt;
+      gp.activebanner
+    &lt;/section&gt;
+    </div>
+    The navigation section contains a single <i>nav</i> element and also contains the unordered list
+    that will represent our menu bar. Note that the id <i>gp-menu-bar</i> is no longer required. The
+    initialization code will take care of marking any other elements that require ids.
+    <div class="code-pre">
+    &lt;section id="gp-nav-section"&gt;
+      &lt;ul&gt;
+      &lt;li&gt;&lt;a href="#"&gt;One&lt;/a&gt;
+      &lt;li&gt;&lt;a href="#"&gt;Two&lt;/a&gt;
+          &lt;div&gt;
+            &lt;a href="#"&gt;Two-A&lt;/a&gt;
+            &lt;a href="#"&gt;Two-B&lt;/a&gt;
+          &lt;/div&gt;
+      &lt;/li&gt;
+    &lt;/section&gt;
+    </div>
+    A good practice then is to wrap both sections in some manner of container element. This isn't
+    a necessity but allows for further customization (discussed below). On this page, the banner
+    is enclosed in a header element. When you put it all together then, your full banner and menu
+    looks as follows:
+    <div class="code-pre">
+    &lt;header&gt;
+      &lt;section id="gp-title-section"&gt;
+        gp.activebanner
+      &lt;/section&gt;
+      &lt;section id="gp-nav-section"&gt;
+        &lt;ul&gt;
+          &lt;li&gt;&lt;a href="#"&gt;One&lt;/a&gt;
+          &lt;li&gt;&lt;a href="#"&gt;Two&lt;/a&gt;
+              &lt;div&gt;
+                &lt;a href="#"&gt;Two-A&lt;/a&gt;
+                &lt;a href="#"&gt;Two-B&lt;/a&gt;
+              &lt;/div&gt;
+          &lt;/li&gt;
+      &lt;/section&gt;
+    &lt;/header&gt;
+    </div>
+
+    <h2>The JavaScript</h2>
+    As with the menu tools, there are no public functions to be called. In order to execute the
+    JavaScript setup code, you only need to pull in the JS file <i>gp.tools.js</i> and the banner
+    initialization code will run automatically on document load. In addition to setting up the ids
+    for the menu items and the mouse events, the initialization code for the banner also adds the
+    mobile menu icon which defaults to being hidden but will appear on mobile devices.
+
+    <h2>Customization</h2>
+    Like the menu, the aesthetics are controlled entirely by the included CSS file. Again, best
+    practice is to start with the styles provided and then override any individual styles you want
+    to customize.
+    <br><br>
+    For example, the most common customization would most likely be the colors. To modify the
+    background and text color of the main menu items, you would want to override the
+    <i>background</i> and <i>color</i> properties for the element <i>ul#gp-menu-bar li a</i>. You
+    might also modify the color that displays when the mouse hovers over the menu item by
+    overriding the <i>background</i> property for the element <i>ul#gp-menu-bar li a:hover</i>. To
+    modify the same colors for the items in the submenu, you can modify the element
+    <i>ul#gp-menu-bar div</i>.
+    <br><br>
+    Basically, any and all styles are customizable. If you have a pretty good handle on CSS, you
+    can start with the provided file and go nuts!
+    <br><br>
+    Styles available for override (in addition to the menu) are:
+    <div class="code">
+      <b>a#gp-menu-icon</b> - The mobile menu icon.<br>
+      <b>section#gp-nav-section</b> - The navigation section.<br>
+      <b>section#gp-title-section</b> - The title section.<br>
+      <b>nav#gp-active-nav</b> - The nav element containing the menu bar.<br>
+    </div>
+    In addition, there is a media query set to kick in when the screen width goes below 640 pixels
+    that tweaks the following styles:
+    <div class="code">
+      <b>a#gp-menu-icon</b><br>
+      <b>section#gp-nav-section</b><br>
+      <b>section#gp-title-section</b><br>
+      <b>nav#gp-active-nav</b><br>
+      <b>ul#gp-menu-bar li</b><br>
+      <b>ul#gp-menu-bar li a</b><br> 
+      <b>ul#gp-menu-bar div</b><br>
+      <b>ul#gp-menu-bar div a</b>
+    </div>
+  </div>
+
+  <footer>
+    Powered by HTML5, Javascript, jQuery, Lightbox, MediaElement, and Gp.Tools.
+    <span id="gp-upgrade"></span>
+    <br><br>
+    <span id="gp-copyright"></span>
+  </footer>
+</body>
+
+<script type="text/javascript" src="../../dist/jquery-1.12.2.min.js"></script>
+<script type="text/javascript" src="../../dist/lightbox/js/lightbox-plus-jquery.js"></script>
+<script type="text/javascript" src="../../dist/gp.tools.js"></script>
+
+</html>

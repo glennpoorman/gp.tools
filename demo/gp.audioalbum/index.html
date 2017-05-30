@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Gp.Tools (V2)</title>
+  <link rel="stylesheet" href="../../dist/gp.tools.css" />
+  <link rel="stylesheet" href="../styles.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+</head>
+
+<body>
+  <header>
+    <div id="banner">
+      Gp.AudioAlbum
+    </div>
+  </header>
+
+  <div class="main">
+    <h1>HTML Audio Album</h1>
+    <h4>Utilities for displaying audio elements in a page using <i>MediaElement</i></h4>
+
+    Like the <i>SlideShow</i> vs <i>SlideDeck</i> discussion, the audio player tools work great for
+    scattering audio elements on a web page and having complete control over each elements position
+    in relation to the other content on the page. Sometimes though, you want to essentially create
+    an album on the page. A no frills container that holds all of the elements in a collection all
+    grouped in one place. Similar to the <i>SlideDeck</i> tools, a strategically marked element in
+    the page is all you need and the tools will handle the rest.
+
+    <h4>audio.json</h4>
+    All of the data for the audio elements must be put into a JSON file for the album tools to work.
+    The format of the JSON file is exactly like the format in the
+    <a href="../gp.audioplayer.js">gp.audioplayer</a> discussion. One difference to note here though
+    is that the previously unused <i>"title"</i> property in the collection JSON will be used here
+    but only if specified. The property itself is still optional.
+
+    <h4>The HTML</h4>
+    With the album, you no longer need to create elemenets in your HTML for each audio file. For
+    this to work, it is simply a matter of placing a single container element for the entire album.
+    <div class="code">&lt;div id="gp-audio-album"&gt;&lt;/div&gt;</div>
+    When the <i>"fromJSON"</i> function is called, the code will automatically look for an element
+    with the id "gp-audio-album" and automatically create the individual audio elements in order
+    within that container. In addition, if a "title" is specified on the JSON collection, an
+    additional <i>DIV</i> element will be created and the title will be inserted.
+    <br><br>
+    That's it!
+
+    <h4>Customization</h4>
+    In addition to the styles that can be used to customize the look of the individual audio
+    elements, two style definitions can be used to customize the appearance of the album. The album
+    itself must have the id <i>"gp-audio-album"</i>. In addition, if a title is present the DIV
+    element that will contain the title will automatically have the class <i>"gp-audio-album-title"</i>
+    applied to it. By default, the style for the class <i>"gp-audio-album-title"</i> looks as follows:
+    <div class="code-pre">
+    .gp-audio-album-title
+    {
+      font-size     : 1.5em;
+      margin-bottom : 0.5em;
+    }
+    </div>
+    That style can, of course, be further customized as can the style for the main
+    <i>"gp-audio-album"</i> container. In this sample, we have customized the style as follows:
+    <div class="code-pre">
+    #gp-audio-album
+    {
+      background : #303060;
+      border-radius : 8px;
+      color : #CCC;
+      padding : 1.0em;
+      padding-bottom : 0.5em;
+      width : 400px;
+    }
+    </div>
+
+    <div id="gp-audio-album"></div>
+  </div>
+
+  <footer>
+    Powered by HTML5, Javascript, jQuery, Lightbox, and gp.tools.js.
+    <br><br>
+    Sound samples recorded by Daniel Simon and Mike Koenig
+    <span id="gp-upgrade"></span>
+    <br><br>
+    <span id="gp-copyright"></span>
+  </footer>
+</body>
+
+<script type="text/javascript" src="../../dist/jquery-1.12.2.min.js"></script>
+<script type="text/javascript" src="../../dist/mediaelement/mediaelement-and-player.js"></script>
+<script type="text/javascript" src="../../dist/gp.tools.js"></script>
+</html>

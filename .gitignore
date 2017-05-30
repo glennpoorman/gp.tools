@@ -1,0 +1,5 @@
+# 3rd party components
+node_modules/
+
+# compiled files
+dist/

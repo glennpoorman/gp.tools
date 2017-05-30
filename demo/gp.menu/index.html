@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Gp.Tools (V2)</title>
+  <link rel="stylesheet" href="../../dist/gp.tools.css" />
+  <link rel="stylesheet" href="../styles.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+</head>
+
+<body>
+  <header>
+    <div id="banner">
+      Gp.Menu
+    </div>
+    <nav>
+      <ul id="gp-menu-bar">
+        <li><a href="#">One</a>
+        <li><a href="#">Two</a>
+            <div>
+              <a href="#">Two-A</a>
+              <a href="#">Two-B</a>
+            </div>
+        </li>
+        <li><a href="#">Three</a>
+            <div>
+              <a href="#">Three-A</a>
+              <a href="#">Three-B</a>
+              <a href="#">Three-C</a>
+              <a href="#">Three-D</a>
+              <a href="#">Three-E</a>
+            </div>
+        </li>
+        <li><a href="#">Four</a>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="main">
+    <h1>Simple Menu</h1>
+    <h4>A simple single layer menu optionally allowing a pulldown menu for each main menu item.</h4>
+
+    <h2>The HTML</h2>
+    The HTML here is extremely simple. Your top level menu is a simple HTML unordered list. In
+    order to be recognized as a menu bar, the id of the list must be set to <i>"gp-menu-bar"</i>
+    as in the following sample.
+    <div class="code-pre">
+    &lt;ul id="gp-menu-bar"&gt;
+    </div>
+    Each list item within the menu bar element must contain, at a minimum, one anchor element
+    which represents the main selection. So using the <i>"One"</i> selection above in this page
+    as an example, the menu bar and first item would read:
+    <div class="code-pre">
+    &lt;ul id="gp-menu-bar"&gt;
+      &lt;li&gt;&lt;a href="#"&gt;One&lt;/a&gt;&lt/li&gt;
+    </div>
+    Of course, you would put in your own destination in place of the "#". Now to have the main
+    menu bar selection also bring up a submenu, you add a single <i>div</i> element that
+    contains any number of additional selections. No added classes or ids are necessary.
+    <br><br>
+    So combining the first and second selections in the menu bar of this page, we get:
+    <div class="code-pre">
+    &lt;ul id="gp-menu-bar"&gt;
+      &lt;li&gt;&lt;a href="#"&gt;One&lt;/a&gt;&lt/li&gt;
+      &lt;li&gt;&lt;a href="#"&gt;Two&lt;/a&gt;
+          &ltdiv&gt;
+            &lta href="#"&gt;Two-A&lt;/a&gt;
+            &lta href="#"&gt;Two-B&lt;/a&gt;
+          &lt/div&gt;
+      &lt/li&gt;
+    </div>
+    To get a clearer picture of the setup for a full menu, use your browser to view the full
+    source of this page.
+
+    <h2>The JavaScript</h2>
+    There are no public functions to be called. In order to execute the JavaScript setup code, you
+    only need to pull in the JS file <i>gp.tools.js</i> and the menu intialization code will run
+    automatically on document load. There actually isn't much to the JavaScript code. On document
+    load, the initialization code tags the menu item anchors with ids and sets event handling code
+    for mouse enter and mouse exit so that the popups work properly.
+
+    <h2>Customization</h2>
+    The aesthetics of the menu are controlled entirely by styles. The included CSS file <i>gp.tools.css</i>
+    contains defaults which are used on this page. For additional tweaking of things like fonts,
+    colors, font sizes, etc, you can override any of the styles in the included CSS file to suit your
+    needs.
+    <br><br>
+    For example, the most common customization would most likely be the colors. To modify the
+    background and text color of the main menu items, you would want to override the
+    <i>background</i> and <i>color</i> properties for the element <i>ul#gp-menu-bar li a</i>. You
+    might also modify the color that displays when the mouse hovers over the menu item by overriding
+    the <i>background</i> property for the element <i>ul#gp-menu-bar li a:hover</i>. To modify the
+    same colors for the items in the submenu, you can modify the element <i>ul#gp-menu-bar div</i>.
+    <br><br>
+    Basically, any and all styles are customizable. If you have a pretty good handle on CSS, you can
+    start with the provided file and go nuts!
+    <br><br>
+    Styles available for override are:
+    <div class="code">
+      <b>ul#gp-menu-bar</b> - The top menu bar.<br>
+      <b>ul#gp-menu-bar li</b> - Individual top menu bar items.<br>
+      <b>ul#gp-menu-bar li a</b> - Anchors within the individual top menu bar items.<br>
+      <b>ul#gp-menu-bar li a:hover</b> - Hover behavior in top menu bar anchors.<br>
+      <b>ul#gp-menu-bar div</b> - Popup menus.<br>
+      <b>ul#gp-menu-bar div a</b> - Anchors within the popup menus.
+    </div>
+  </div>
+
+  <footer>
+    Powered by HTML5, Javascript, jQuery, Lightbox, MediaElement, and Gp.Tools.
+    <span id="gp-upgrade"></span>
+    <br><br>
+    <span id="gp-copyright"></span>
+  </footer>
+</body>
+
+<script type="text/javascript" src="../../dist/jquery-1.12.2.min.js"></script>
+<script type="text/javascript" src="../../dist/gp.tools.js"></script>
+
+</html>

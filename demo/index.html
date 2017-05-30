@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Gp.Tools (V2)</title>
+  <link rel="stylesheet" href="../dist/gp.tools.css" />
+  <link rel="stylesheet" href="styles.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+</head>
+
+<body>
+  <header>
+    <div id="banner">
+      GP.Tools (V2)
+    </div>
+  </header>
+
+  <div class="main">
+    <h2>JavaScript Tools for Website Developers.</h2>
+    <h4>Written using JavaScript, jQuery, CSS, LightBox, and MediaElement</h4>
+
+    <h2>The Tools</h2>
+    The tools are encapsulated into a single JS file and a single CSS file. In addition, there
+    are dependencies on the 3rd party tools <i>jQuery</i>, <i>LightBox</i>, and <i>MediaElement</i>.
+    The proper versions of these tools are included in the distribution. The tools themselves are
+    broken up into logical groups separated by functionality as follows:
+    <ul>
+      <li><b>Gp.Basic</b><br>
+          Some simple functions for inserting copyright, displaying single images, inserting
+          email addresses, etc.
+          <br><br>
+      <li><b>Gp.Menu, Gp.ActiveBanner</b><br>
+          Navigation tools for creating simple menus with single layer pulldowns and mobile
+          friendly navigation bars.
+          <br><br>
+      <li><b>Gp.SlideShow, Gp.SlideDeck</b><br>
+          Tools for displaying collections of images into a single web page grouped together
+          for viewing using <i>LightBox</i>.
+          <br><br>
+      <li><b>Gp.AudioPlayer, Gp.AudioAlbum</b><br>
+          Tools for inserting audio elements into your page and connecting them with local
+          audio files.
+    </ul>
+
+    <h2>Setup</h2>
+    Toolkit usage requires both a JavaScript (JS) file as well as a style sheet (CSS) file. In
+    adition, <i>jQuery</i> is required for all functionality while some pieces also require
+    <i>LightBox</i> (for image display) and <i>MediaElement</i> (for audio elements). The minimum
+    set of files you would need are:
+    <div class="code">
+      gp.tools.js<br>
+      gp.tools.css<br>
+      jquery-1.12.2.js
+    </div>
+    Depending on your usage, additionally required files are:
+    <div class="code">
+      lightbox/js/lightbox-plus-jquery.js<br>
+      mediaelement/mediaelement-and-player.js
+    </div>
+    Please note that while both <i>LightBox</i> and <i>MediaElement</i> also distribute required
+    style sheet (CSS) files, these files are automatically loaded in with <i>gp.tools.css</i>. For
+    the JS files, however, we leave pulling those in up to you.
+    <br><br>
+    Also note that this distribution delivers minimized versions of all of the above files.
+    <div class="code">
+      jquery-1.12.2.min.js<br>
+      lightbox/js/lightbox-plus-jquery.min.js<br>
+      mediaelement/mediaelement-and-player.min.js<br>
+      gp.tools.min.js<br>
+      gp.tools.min.css<br>
+    </div>
+
+    <h4>CSS</h4>
+    There are styles associated with many of the included tools some required and some optional
+    and overridable. These styles can be pulled in via the <i>gp.tools.css</i> or 
+    <i>gp.tools.min.css</i> files. In addition, both the <i>LightBox</i> and <i>MediaElement</i>
+    utilities ship with their own stylesheets. Both of those stylesheets are automatically pulled
+    in with <i>gp.tools.css</i> though so there should never be a need to reference them directly.
+    <br><br>
+    To pull in all of the necessary styles then is simply a matter of including the one stylesheet
+    in the <i>&lt;head&gt;</i> section of your page.
+    <div class="code">
+      &lt;link rel="stylesheet" href="gp.tools.css" /&gt;
+    </div>
+
+    <h4>JS</h4>
+    All of <i>Gp.Tools</i> functionality is encapsulated into the single <i>gp.tools.js</i> or
+    <i>gp.tools.min.js</i> file. As mentioned before, <i>jQuery</i> is also required for all
+    functionality so at a minimum, you need to pull in two files.
+    <div class="code">
+      &lt;script type="text/javascript" src="jquery-1.12.2.js"&gt;&lt;/script&gt;<br>
+      &lt;script type="text/javascript" src="gp.tools.js"&gt;&lt;/script&gt;
+    </div>
+    In addition, both <i>LightBox</i> and <i>MediaElement</i> are required for some functionality.
+    In the cases where you need those tools as well, you will need to pull in those JS files before
+    you include <i>gp.tools.js</i>. Worst case scenario is a page that uses both the imaging and
+    the audio utilities which would look like:
+    <div class="code">
+      &lt;script type="text/javascript" src="jquery-1.12.2.js"&gt;&lt;/script&gt;<br>
+      &lt;script type="text/javascript" src="lightbox/js/lightbox-plus-jquery.js"&gt;&lt;/script&gt;<br>
+      &lt;script type="text/javascript" src="mediaelement/mediaelement-and-player.js"&gt;&lt;/script&gt;<br>
+      &lt;script type="text/javascript" src="gp.tools.js"&gt;&lt;/script&gt;
+    </div>
+    <b>IMPORTANT:</b> It's important to note that the <i>Gp.Tools.js</i> file has several tasks that
+    run on document load and some of those tasks are dependent on the other utilities so the file
+    <i>gp.tools.js</i> should always be pulled in last.
+
+    <h2>Samples and Instructions</h2>
+    Check out the links below for samples of the various pieces of functionality and instructions
+    on how to use them.
+    <ul>
+      <li><a href="gp.basic/index.html">Gp.Basic</a> - the basic tools
+      <li><a href="gp.menu/index.html">Gp.Menu</a> - simple menu system with single layer pulldowns
+      <li><a href="gp.activebanner/index.html">Gp.ActiveBanner</a> - responsive banner/menu
+      <li><a href="gp.slideshow/index.html">Gp.SlideShow</a> - LightBox Slide Show part 1
+      <li><a href="gp.slidedeck/index.html">Gp.SlideDeck</a> - LightBox Slide Show part 2
+      <li><a href="gp.audioplayer/index.html">Gp.AudioPlayer</a> - embedded audio elements part 1
+      <li><a href="gp.audioalbum/index.html">Gp.AudioAlbum</a> - embedded audio elements part 2
+    </ul>
+  </div>
+
+  <footer>
+    Powered by HTML5, Javascript, jQuery, Lightbox, MediaElement, and Gp.Tools.
+    <span id="gp-upgrade"></span>
+    <br><br>
+    <span id="gp-copyright" data-who="Glenn Poorman"></span>
+  </footer>
+</body>
+
+<script type="text/javascript" src="../dist/jquery-1.12.2.min.js"></script>
+<script type="text/javascript" src="../dist/gp.tools.js"></script>
+</html>

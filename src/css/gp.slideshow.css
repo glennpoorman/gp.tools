@@ -1,0 +1,20 @@
+/**************************************************************************************************/
+/* Gp.SlideShow
+/**************************************************************************************************/
+
+#gp-slide-deck
+{
+  text-align    : center;                    /* Customizable: slides container content alignment. */
+}
+
+.gp-slide-image
+{
+  display       : inline-block;              /* Customizable: slide display.                      */
+  padding       : 8px;                       /* Customizable: slide padding.                      */
+  text-align    : center;                    /* Customizable: slide caption alignment.            */
+}
+
+.gp-slide-image img
+{
+  border        : 0;                         /* Customizable: slide image border.                 */
+}

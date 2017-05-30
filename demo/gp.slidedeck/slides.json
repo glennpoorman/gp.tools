@@ -1,0 +1,31 @@
+{
+  "title" : "SlideDeck",
+  "thumbscale" : "0.4",
+  "data" :
+  [
+    {
+      "caption"     : "Dandelions",
+      "description" : "Some dandelions"
+    },
+    {
+      "caption"     : "Ducks",
+      "description" : "Two ducks in the grass"
+    },
+    {
+      "caption"     : "Lily",
+      "description" : "A purple lily"
+    },
+    {
+      "caption"     : "Turtle",
+      "description" : "A swimming turtle"
+    },
+    {
+      "caption"     : "Turtles",
+      "description" : "Several swimming turtles"
+    },
+    {
+      "caption"     : "Rocks",
+      "description" : "Landscape rocks in stream"
+    }
+  ]
+}

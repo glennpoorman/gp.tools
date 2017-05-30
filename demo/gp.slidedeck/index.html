@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Gp.Tools (V2)</title>
+  <link rel="stylesheet" href="../../dist/gp.tools.css" />
+  <link rel="stylesheet" href="../styles.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+</head>
+
+<body>
+  <header>
+    <div id="banner">
+      Gp.SlideShow
+    </div>
+  </header>
+
+  <div class="main">
+    <h1>LightBox Slide Show Part 2</h1>
+    <h4>Utilities for presenting a slide show in a single page as a series of clickable thumbnails.</h4>
+
+    The slide show code works great for scattering slides all over the place in a given web page
+    and grouping all of those slides into a single <i>LightBox</i> collection. You have full control
+    over where your slides are located and how they are floated. Sometimes though, you just want to
+    display every slide in the group a one big clump. One container element that holds all of the
+    thumbnails without anything else. Of course that is easy to do yourself using the slide show
+    tools but the slide deck part of these tools simplifies things even more to the point where the
+    only HTML you need is the container itself. That, along with the file <i>slides.json</i> and
+    the image files on disk is enough to make it all work.
+
+    <h4>slides.json</h4>
+    All of the data for the slides must be put into a file called <i>"slides.json"</i> for the slide
+    deck to work. The format for the JSON is exactly like the format in the
+    <a href="../gp.slideshow/index.html">gp.slideshow</a> discussion. In the slide deck however, it
+    is best not to use the "float" property for any of your slides.
+
+    <h4>The HTML</h4>
+    With the slide deck, you no longer need to create elements in your HTML for each slide. For this
+    to work, it is simply a matter of placing a container element for the entire collection.
+    <div class="code">&lt;div id="gp-slide-deck"&gt;&lt/div&gt;</div>
+    Like with the slide show code, we will automatically call <i>"fromJSON"</i> to load up the file
+    <i>"slides.json"</i> on document load. That code will look for an element with the id
+    <i>"gp-slide-deck"</i> though and automatically create the individual slide elements in order
+    within that container. So there's nothing else for you to do here.
+
+    <h4>Customization</h4>
+    The included CSS file <i>gp.tools.css</i> contains a style definition for anything with the
+    id <i>"gp-slide-deck"</i>. The default implementation is:
+    <div class="code-pre">
+    #gp-slide-deck
+    {
+      text-align : center;
+    }
+    </div>
+    Like anything else, you are free to override and customize however you see fit. In the sample
+    shown below, we added the following properties to the style.
+    <div class="code-pre">
+    #gp-slide-deck
+    {
+      margin : 16px auto;
+      max-width : 800px;
+    }
+    </div>
+    Here we set the margins for a bit of padding above and below as well as centering the container
+    in the page. Lastly, we set a max width so the container can never go above 800 pixels but will
+    shrink for a smaller window or a mobile device.
+    <div id="gp-slide-deck"></div>
+    <br clear=all>
+  </div>
+
+  <footer>
+    Powered by HTML5, Javascript, jQuery, Lightbox, MediaElement, and Gp.Tools.
+    <span id="gp-upgrade"></span>
+    <br><br>
+    <span id="gp-copyright"></span>
+  </footer>
+</body>
+
+<script type="text/javascript" src="../../dist/jquery-1.12.2.min.js"></script>
+<script type="text/javascript" src="../../dist/lightbox/js/lightbox-plus-jquery.js"></script>
+<script type="text/javascript" src="../../dist/gp.tools.js"></script>
+</html>

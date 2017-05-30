@@ -1,0 +1,8 @@
+Gp.Tools.V2
+-----------
+* Re-organized entire project to use GRUNT as a build system.
+* Setup GRUNT to build everything into a single JS and CSS file and also minify.
+* Simplified the menu code to key off list item hover removing the need for timers.
+* JSON for slide and audio tools re-worked for completeness and consistency.
+* Responsive navigation system added (ActiveBanner).
+* Audio tools re-worked to use MediaElement and HTML5 audio.
