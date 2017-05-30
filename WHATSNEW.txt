@@ -1,3 +1,10 @@
+Gp.Tools.V2.1
+-------------
+* Code cleaned up and optimized for faster downloads.
+* Updated to jQuery 3.2.1
+* Updated to LightBox 2.9.0
+* Updated to MediaElement 4.0.7
+
 Gp.Tools.V2
 -----------
 * Re-organized entire project to use GRUNT as a build system.

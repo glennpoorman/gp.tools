@@ -47,64 +47,38 @@ $.extend(Gp, {
         //
         addPlayer : function(id, audioFile)
         {
-            // Locate the element identified by the input id.
+            // Locate or create the audio element identified by the input id.
             //
-            var container = document.getElementById(id);
-
-            // If the element isn't found, we might be creating an album. In other words, a single
-            // collection of audio elements on one container with the id "gp-audio-album". To see if
-            // that's the case, try and locate an element in the HTML with that id. If we find one,
-            // create a DIV element to hold the audio and add it as a child to the album element.
-            //
-            if (container == null)
-            {
-                var album = document.getElementById("gp-audio-album");
-                if (album != null)
-                {
-                    container = document.createElement("DIV");
-                    container.id = id;
-                    album.appendChild(container);
-                }
-            }
-
-            // Make sure the element uses the "gp-audio-container" class.
-            //
-            container.className = "gp-audio-container";
+            var container = Gp._getContainer(id, "gp-audio-album", "gp-audio-container");
 
             // Append a span element to hold the title only if a title was specified.
             //
             if (audioFile.title != null)
             {
-                var span = document.createElement("SPAN");
-                span.className = "gp-audio-title";
-                span.innerHTML = audioFile.title;
-                container.appendChild(span);
+                $("<span>").prop("className", "gp-audio-title").
+                            html(audioFile.title).
+                            appendTo(container);
             }
 
             // Create an HTML5 "audio" element. Set the id using a slightly modified version of the
             // container id, set the url, and set the autoplay property.
             //
-            var player = document.createElement("AUDIO");
-            player.id = id + "-player";
-            player.src = audioFile.url;
-            player.controls = "controls";
-            player.preload = "metadata";
-            if (audioFile.autoplay == "true")
-                player.autoplay = true;
-
-            // Append the new audio element to the container.
-            //
-            container.appendChild(player);
+            var player = $("<audio>").prop("id", id + "-player").
+                                      prop("src", audioFile.url).
+                                      prop("controls", "controls").
+                                      prop("preload", "metadata").
+                                      prop("autoplay", (audioFile.autoplay === "true") ? true : false).
+                                      appendTo(container);
 
             // Now call into MediaElement to skin the new player.
             //
-            $("#" + player.id).mediaelementplayer();
+            $("#" + player.prop("id")).mediaelementplayer();
 
             // One the player has been skinned, we can set the volume but only if there was a
             // volume specified in the input object.
             //
             if (audioFile.volume != null)
-                $("#" + player.id).prop("volume", audioFile.volume / 100.0);
+                $("#" + player.prop("id")).prop("volume", audioFile.volume / 100.0);
         },
 
         // Function will load a series of audio file objects from the specified JSON file and adds
@@ -152,6 +126,10 @@ $.extend(Gp, {
         //
         fromJSON : function(jsonURL) {
 
+            // Save "this" so we can use it inside our function definition below.
+            //
+            var _this = this;
+
             // Use the jQuery function to fetch the json file specified in the input URL and specify
             // the function to be called once the JSON is loaded and parsed.
             //
@@ -163,13 +141,12 @@ $.extend(Gp, {
                 // element to contain the title. Make sure the title uses the "gp-audio-album-title"
                 // class name.
                 //
-                var album = document.getElementById("gp-audio-album");
-                if (album != null && audioGroup.title != null)
+                var album = $("#gp-audio-album");
+                if (album.length !== 0 && audioGroup.title != null)
                 {
-                    var title = document.createElement("DIV");
-                    title.className = "gp-audio-album-title";
-                    title.innerHTML = audioGroup.title;
-                    album.appendChild(title);
+                    $("<div>").prop("className", "gp-audio-album-title").
+                               html(audioGroup.title).
+                               appendTo(album);
                 }
 
                 // Loop through all of the audio file objects specified in the json and add audio
@@ -184,7 +161,7 @@ $.extend(Gp, {
 
                     // Add the audio element to the page.
                     //
-                    Gp.AudioPlayer.addPlayer(id, audioGroup.data[i]);
+                    _this.addPlayer(id, audioGroup.data[i]);
                 }
             });
         }

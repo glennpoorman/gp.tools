@@ -1,4 +1,4 @@
-// Extend the top level "Gp" object adding the "Tools property.
+// Extend the top level "Gp" object adding the "Slideshow" property.
 //
 $.extend(Gp, {
 
@@ -59,29 +59,9 @@ $.extend(Gp, {
             //
             slide = slide || {};
 
-            // Locate the element identified by the input id.
+            // Locate or create the slide element identified by the input id.
             //
-            var slideElement = document.getElementById(id);
-
-            // If the element isn't found, we might be creating a deck. In other words, a single
-            // collection of slides under one element with the id "gp-slide-deck". To see if that's
-            // the case, try and locate an element in the HTML with that id. If we find one, create
-            // a DIV element to hold the slide and add it as a child to the deck element.
-            //
-            if (slideElement == null)
-            {
-                var deck = document.getElementById("gp-slide-deck");
-                if (deck != null)
-                {
-                    slideElement = document.createElement("DIV");
-                    slideElement.id = id;
-                    deck.appendChild(slideElement);
-                }
-            }
-
-            // Make sure the element uses the "gp-slide-image" class.
-            //
-            slideElement.className = "gp-slide-image";
+            var slideElement = Gp._getContainer(id, "gp-slide-deck", "gp-slide-image");
 
             // Setup the url. If a url was specified in the slide object, use it. Otherwise
             // use the id and assume the file is a jpg file.
@@ -89,16 +69,12 @@ $.extend(Gp, {
             var url = slide.url || id + ".jpg";
 
             // Create a lightbox anchor element. Set the url, the group, and set the title based
-            // on the description from the slide object.
+            // on the description from the slide object. Append the anchor to the slide element.
             //
-            var anchor = document.createElement("A");
-            anchor.href = url;
-            anchor.rel = "lightbox[" + group + "]";
-            anchor.title = slide.description || "";
-
-            // Add the anchor to the slide element.
-            //
-            slideElement.appendChild(anchor);
+            var anchor = $("<a>").prop("href", url).
+                                  prop("rel", "lightbox[" + group + "]").
+                                  prop("title", slide.description || "").
+                                  appendTo(slideElement);
 
             // If the float property is "hidden", that means we're creating an anchor in order to
             // get a photo into the collection but we're not actually displaying the thumbnail on
@@ -106,7 +82,7 @@ $.extend(Gp, {
             //
             if (slide.float === "hidden")
             {
-                slideElement.style.display = "none";
+                slideElement.css("display", "none");
             }
 
             // If the float property is anything else, then we want to display a thumbnail image in
@@ -114,23 +90,16 @@ $.extend(Gp, {
             //
             else
             {
-                // Create an image element.
+                // Create an image element and append it to the anchor.
                 //
-                var image = document.createElement("IMG");
-                image.title = "Click to enlarge";
+                var image = $("<img>").prop("title", "Click to enlarge").appendTo(anchor);
 
                 // If the slide has a "thumbscale" property, then use the original image as the
                 // thumbnail and scale the width/height using that value.
                 //
                 if (slide.thumbscale)
                 {
-                    var tmpImg = new Image();
-                    tmpImg.src = url;
-                    tmpImg.onload = function() {
-                        image.src = tmpImg.src;
-                        image.width = tmpImg.width * slide.thumbscale;
-                        image.height = tmpImg.height * slide.thumbscale;
-                    }
+                    Gp._sizedImg(image, url, slide.thumbscale);
                 }
 
                 // Otherwise assume there is a thumbnail image on disk. Use the original filename
@@ -141,27 +110,18 @@ $.extend(Gp, {
                 {
                     fileSuffix = url.substr((url.lastIndexOf(".") + 1));
                     filePrefix = url.substr(0, url.lastIndexOf("."));
-                    image.src = filePrefix + "-tn." + fileSuffix;
+                    image.prop("src", filePrefix + "-tn." + fileSuffix);
                 }
 
-                // Add the image element to the anchor element.
+                // Append a line break and a span element to the slide element to hold the optional
+                // slide caption.
                 //
-                anchor.appendChild(image);
-
-                // Create span element so we can add the caption property to the thumbnail image.
-                //
-                var span = document.createElement("SPAN");
-                span.innerHTML = slide.caption || "";
-
-                // Add the new span to the slide element and also add a line break so the caption
-                // appears underneath the thumbnail.
-                //
-                slideElement.appendChild(document.createElement("BR"));
-                slideElement.appendChild(span);
+                $("<br>").appendTo(slideElement);
+                $("<span>").html(slide.caption || "").appendTo(slideElement);
 
                 // Set the slide "float" property based on the align property from the slide.
                 //
-                slideElement.style.float = slide.float || "none";
+                slideElement.css("float", slide.float || "none");
             }
         },
 
@@ -217,6 +177,10 @@ $.extend(Gp, {
         //
         fromJSON : function(jsonURL) {
 
+            // Save "this" so we can use it inside our function definition below.
+            //
+            var _this = this;
+
             // Use the jQuery function to fetch the json file specified in the input URL and specify
             // the function to be called once the JSON is loaded and parsed.
             //
@@ -245,7 +209,7 @@ $.extend(Gp, {
 
                     // Add the slide to the page.
                     //
-                    Gp.Slideshow.addSlide(id, slides.title, slides.data[i]);
+                    _this.addSlide(id, slides.title, slides.data[i]);
                 }
             });
         }

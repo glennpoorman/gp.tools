@@ -6,6 +6,7 @@ module.exports = function(grunt) {
                 src: [
                     'src/js/gp.header.js',
                     'src/js/gp.object.js',
+                    'src/js/gp.internals.js',
                     'src/js/gp.basic.js',
                     'src/js/gp.menu.js',
                     'src/js/gp.slideshow.js',

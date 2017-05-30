@@ -59,13 +59,12 @@
             // Set the id on the list item and set the event handler to be used for "mouseover"
             // and "mouseout" events to toggle visibility of the submenu (if there is one).
             //
-            $(this).attr("id", id);
-            $(this).hover(toggleSubMenu, toggleSubMenu);
+            $(this).prop("id", id).hover(toggleSubMenu, toggleSubMenu);
 
             // Decorate the list item id with the string "-submenu" and add it as the id on the
             // item sub-menu (if there is one).
             //
-            $("div:first", this).attr("id", id + "-submenu");
+            $("div:first", this).prop("id", id + "-submenu");
         });
     };
 
@@ -79,18 +78,18 @@
         // anchor to the title section. Note that the appearance of the anchor is controlled by
         // by the style "gp-menu-icon".
         //
-        var anchor = document.createElement("A");
-        anchor.href = "#";
-        anchor.id = "gp-menu-icon";
-        anchor.onclick = function() { $('ul#gp-menu-bar').slideToggle('slow'); };
-        $("#gp-title-section").append(anchor);
+        $("<a>").prop("href", "#").
+                 prop("id", "gp-menu-icon").
+                 click(function() { $('ul#gp-menu-bar').slideToggle('slow'); }).
+                 appendTo("#gp-title-section");
 
         // When using the active banner, it is assumed that the only elements with ids assigned in
         // the HTML are the two sections title and nav. So here we add additional required ids to
         // the nav element in the nav section "gp-active-nav" and the ul element within that nav
         // "gp-menu-bar".
-        $("#gp-nav-section nav:first").attr("id", "gp-active-nav");
-        $("#gp-nav-section ul:first").attr("id", "gp-menu-bar");
+        //
+        $("#gp-nav-section nav:first").prop("id", "gp-active-nav");
+        $("#gp-nav-section ul:first").prop("id", "gp-menu-bar");
     };
 
     // Document ready function is called when the document is fully loaded.

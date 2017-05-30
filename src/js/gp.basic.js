@@ -1,4 +1,4 @@
-// Extend the top level "Gp" object adding the "Tools property.
+// Extend the top level "Gp" object adding the "Basic" property.
 //
 $.extend(Gp, {
 
@@ -11,11 +11,11 @@ $.extend(Gp, {
         checkForHTML5 : function () {
 
             // Create a canvas element and then look for a canvas attribute that would only exist
-            // if the canvas (introduced in HTML5) were fully supported (i.e. the "context"
-            // attribute). Note that the element creation will always succeed but if the attribute
+            // if the canvas (introduced in HTML5) were fully supported (i.e. the "getContext"
+            // function). Note that the element creation will always succeed but if the attribute
             // isn't there, we can assume we have no HTML5 support.
             //
-            return (document.createElement("canvas").getContext) ? true : false;
+            return ($("<canvas>")[0].getContext) ? true : false;
         },
 
         // Function will look for an element on the page identified by a given id and add an email
@@ -28,16 +28,9 @@ $.extend(Gp, {
         //
         emailLink : function(id, user, domain, link) {
 
-            // Make sure the id is in the proper format for jQuery.
-            //
-            var idstr = id;
-            if (idstr.indexOf("#") != 0)
-                idstr = "#" + id;
-
             // Create the link text and add the email address to the element.
             //
-            var linkText = link || user + "@" + domain;
-            $(idstr).html("<a hre" + "f=ma" + "ilto:" + user + "@" + domain + ">" + linkText + "</a>");
+            Gp._emLink("#" + id, user, domain, link);
         },
 
         // Function will look for all elements in the page that use the class "gp-send-mail". For
@@ -57,10 +50,9 @@ $.extend(Gp, {
                 var domain = $(obj).data("domain");
                 var link = $(obj).data("link");
 
-                // Create the linkn text and add the email address to the element.
+                // Create the link text and add the email address to the element.
                 //
-                var linkText = link || user + "@" + domain;
-                $(obj).html("<a hre" + "f=ma" + "ilto:" + user + "@" + domain + ">" + linkText + "</a>");
+                Gp._emLink(obj, user, domain, link);
             });
         },
 
@@ -69,8 +61,20 @@ $.extend(Gp, {
         //
         html5Message : function() {
 
-            if (Gp.Basic.checkForHTML5() === false)
-                $("#gp-upgrade").html("<br><br><b>Please upgrade your browser to support HTML5</b>");
+            // First see if the browser supports HTML5. If it does we're done.
+            //
+            if (this.checkForHTML5() === false)
+            {
+                // Check to see if the user set a custom attribute specifying the message to
+                // display. If not, use the default.
+                //
+                var msg = $("#gp-upgrade").data("message") || "Please upgrade your browser to support HTML5";
+
+                // Display the message in the element with the id "gp-upgrade" and also make sure
+                // the display for that element is set to "block".
+                //
+                $("#gp-upgrade").html(msg).css("display", "block");
+            }
         },
 
         // Function looks for an element with the id "gp-copyright" and if one exists, inserts a
@@ -85,9 +89,7 @@ $.extend(Gp, {
             // spec data-who="whoever holds the copyright". See if that attribute has been specified
             // on the span element. Default to me if it hasn't.
             //
-            var who = $("#gp-copyright").data("who");
-            if (who == null)
-                who = "Glenn Poorman";
+            var who = $("#gp-copyright").data("who") || "Glenn Poorman";
 
             // Fetch today's date.
             //
@@ -109,12 +111,12 @@ $.extend(Gp, {
         //
         openWindow : function(url, width, height, scrollbars) {
 
-            var s = (scrollbars === true) ? "1" : "0";
+            var s = (scrollbars == true) ? "1" : "0";
             var options = "width=" + width + ",height=" + height + ",resizable=1,scrollbars=" + s;
             window.open(url, "", options);
         },
 
-        // Function displays a random image from a collection from a collection if images.
+        // Function displays a random image from a collection of images.
         //
         // id       - id of the <img> element that will display the random image.
         // howmany  - number of images in the collection to choose from.
@@ -180,8 +182,9 @@ $.extend(Gp, {
         // the scale that will be applied to the image width and height for thumbnail display, and
         // an optional float property (also for the thumbnail).
         //
-        // So going back to the example above, to display a 180x120 thumbnail of the image floated
-        // right, you would make a call that looks like:
+        // So going back to the example above, let's say that "my_pic.jpg" is a 450x300 image and
+        // we want to display it in the page as a 180x120 thumbnail floated right. The following
+        // call would achieve this.
         //
         //     Gp.Basic.simpleImage("images/my_pic.jpg", "My Pic", 0.4, "right");
         //
@@ -201,9 +204,7 @@ $.extend(Gp, {
             // Locate the element identified by the input id. Make sure the element uses the
             // "gp-simple-image" class and set the "float" property.
             //
-            var containerElement = document.getElementById(id);
-            containerElement.className = "gp-simple-image";
-            containerElement.style.float = float || "none";
+            var container = $("#" + id).prop("className", "gp-simple-image").css("float", float || "none");
 
             // See if the id contains a commonly supported image file suffix. If not, assume
             // the function was called with no suffix and use ".jpg".
@@ -221,45 +222,26 @@ $.extend(Gp, {
 
             // Create a lightbox anchor element. Set the image name based on the id and set the
             // "rel" property so that lightbox will be used to display the image when clicked.
+            // Append the new anchor to the container.
             //
-            var anchor = document.createElement("A");
-            anchor.href = id;
-            anchor.rel = "lightbox";
-            anchor.title = description || "";
+            var anchor = $("<a>").prop("href", id).
+                                  prop("rel", "lightbox").
+                                  prop("title", description || "").
+                                  appendTo(container);
 
-            // Append the anchor to the container element.
+            // Create an image element and append it to the anchor. This will be the thumbnail.
             //
-            containerElement.appendChild(anchor);
+            var image = $("<img>").prop("title", "Click to enlarge").appendTo(anchor);
 
-            // Create an image element. This will be the thumbnail. Set the image named based on
-            // the id and set the image width and height. Note that we create a temporary image and
-            // set the width and height in the "onload" function. This is needed as the original
-            // width and height parameters will be zero until the image is fully loaded.
+            // Set the image name based on the id and set the image width and height.
             //
-            var image = document.createElement("IMG");
-            image.title = "Click to enlarge";
-            var tmpImg = new Image();
-            tmpImg.src = id;
-            tmpImg.onload = function() {
-                image.src = tmpImg.src;
-                image.width = tmpImg.width * thumbscale;
-                image.height = tmpImg.height * thumbscale;
-            }
+            Gp._sizedImg(image, id, thumbscale);
 
-            // Append the image to the anchor element.
+            // Lastly, append a line break and a span element to the container to hold the optional
+            // short description of the image.
             //
-            anchor.appendChild(image);
-
-            // Create span element so we can add the short description to the thumbnail image.
-            //
-            var span = document.createElement("SPAN");
-            span.innerHTML = caption || "";
-
-            // Add the new span to the image and also add a line break so the text displays on
-            // a new line.
-            //
-            containerElement.appendChild(document.createElement("BR"));
-            containerElement.appendChild(span);
+            $("<br>").appendTo(container);
+            $("<span>").html(caption || "").appendTo(container);
         }
     }
 });

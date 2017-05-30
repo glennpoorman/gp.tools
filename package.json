@@ -1,6 +1,6 @@
 {
   "name": "gp.tools.v2",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "JavaScript Tools for Website Developers",
   "main": "build/gp.tools.js",
   "scripts": {
