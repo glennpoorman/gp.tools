@@ -70,15 +70,16 @@ $.extend(Gp, {
                                       prop("autoplay", (audioFile.autoplay === "true") ? true : false).
                                       appendTo(container);
 
+            // Get the starting volume. We accept a value between 0 and 100 and will default
+            // to 80 if no volume is given.
+            //
+            var volume = audioFile.volume || 80;
+
             // Now call into MediaElement to skin the new player.
             //
-            $("#" + player.prop("id")).mediaelementplayer();
-
-            // One the player has been skinned, we can set the volume but only if there was a
-            // volume specified in the input object.
-            //
-            if (audioFile.volume != null)
-                $("#" + player.prop("id")).prop("volume", audioFile.volume / 100.0);
+            $("#" + player.prop("id")).mediaelementplayer({
+                startVolume : volume / 100.0
+            });
         },
 
         // Function will load a series of audio file objects from the specified JSON file and adds
