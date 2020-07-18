@@ -29,6 +29,12 @@ module.exports = function(grunt) {
             },
         },
         copy: {
+            jquery: {
+                expand: true,
+                cwd: 'node_modules/jquery/dist/',
+                src: ['**'],
+                dest: 'dist/jquery/',
+            },
             lightbox: {
                 expand: true,
                 cwd: 'node_modules/lightbox2/dist/',
