@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Gp.Tools (V2)</title>
+  <link rel="stylesheet" href="/dist/gp.tools.css" />
+  <link rel="stylesheet" href="/demo/styles.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+</head>
+
+<body>
+  <header>
+    <div id="banner">
+      Gp.RandomAudio
+    </div>
+  </header>
+
+  <div class="main">
+    <h1>HTML Random Audio Player</h1>
+    <h4>Utilities insert audio player and randomly choose from a list of audio files to play</h4>
+
+    These utilities extend the <i>Gp.AudioPlayer</i> utilities and allow you to insert audio players
+    into a page that will randomly select the audio to play from an input array of audio files.
+    The list of files can be specified via a JavaScript call or through a JSON file of audio objects.
+    If the file is named <i>randomaudio.json</i>, it will be automatically loaded on document load.
+    Any number of random audio elements can occur in any given page but only one can be automatically
+    loaded on document load.
+
+    <div class="function-title">Gp.RandomAudio.addPlayer(id, data);</div>
+    <div class="function-description">
+      <h4>Requires <i>MediaElement</i></h4>
+      Adds an audio player to the page as a child of the given container element and randomly selects
+      the audio file to play from an input array of audio file specs.
+      <div class="code">
+        <b>id</b> - id of the container element where the audio element will be inserted.<br>
+        <b>data</b> - JSON data containing the data required to create the audio player.
+      </div>
+      <div class="code-pre">
+      {
+        /* [optional] Play on load.
+         * @type Boolean (default = "false")
+         */
+        "autoplay" : "false",
+
+        /* [optional] Initial volume.
+         * @type Integer (0 to 100, default = 80)
+         */
+        "volume" : null,
+
+        /* [required] Audio file data.
+         * Array of audio file objects.
+         */
+        "data" :
+        [
+          {
+            /* [required] Audio file url.
+             * @type String
+             */
+            "url" : null,
+
+            /* [optional] Title.
+             * @type String
+             */
+            "title" : null,
+
+            /* [optional] Artist.
+             * @type String
+             */
+            "artist" : null,
+
+            /* [optional] Album.
+             * @type String
+             */
+            "album" : null,
+          }
+        ]
+      }        
+      </div>
+
+      <h4>Usage</h4>
+      To use the <i>addPlayer</i> function, the page needs a container element (preferably a DIV)
+      for the audio player and the element must have a unique id.
+      <div class="code-pre">
+      &lt;div id="some-id"&gt;&lt;/div&gt;
+      </div>
+      With a container element in place, the audio element is inserted by calling the
+      <i>addPlayer</i> function for that container at the bottom of the page after all of
+      requisite JS files have been pulled in.
+      <div class="code-pre">
+      Gp.RandomAudio.addPlayer("some-id",
+        {
+          "autoplay" : "false",
+          "volume" : "80",
+          "data" : [
+            {
+              "url" : "/demo/audio/gibbon-monkey.mp3",
+              "title" : "Gibbon Monkey"
+            },
+            {
+              "url" : "/demo/audio/puppy-barking.mp3",
+              "title" : "Puppy Barking"
+            },
+            {
+              "url" : "/demo/audio/gibbon-monkey.mp3",
+              "title" : "Rooster"
+            }
+          ]
+        }
+      );
+      </div>
+      <div id="some-id"></div>
+      Note that the "autoplay" and "volume" properties in the JSON object are optional. In the
+      those properties, <i>autoplay</i> defaults to <i>false</i> and <i>volume</i> defaults to
+      <i>80</i>.
+    </div>
+
+    <div class="function-title">Gp.RandomAudio.fromJSON(jsonURL);</div>
+    <div class="function-description">
+      <h4>Requires <i>MediaElement</i></h4>
+      Loads the data required to insert a single random audio player into the current page from
+      the specified JSON file.
+      <div class="code">
+        <b>jsonURL</b> - url of the JSON file to load.
+      </div>
+      <div class="code-pre">
+        {
+          /* [required] Id of the element that will contain the audio player.
+           * @type String
+           */
+          "id" : null,
+
+          /* [optional] Play on load.
+           * @type Boolean (default = "false")
+           */
+          "autoplay" : "false",
+  
+          /* [optional] Initial volume.
+           * @type Integer (0 to 100, default = 80)
+           */
+          "volume" : null,
+  
+          /* [required] Audio file data.
+           * Array of audio file objects.
+           */
+          "data" :
+          [
+            {
+              /* [required] Audio file url.
+               * @type String
+               */
+              "url" : null,
+  
+              /* [optional] Title.
+               * @type String
+               */
+              "title" : null,
+  
+              /* [optional] Artist.
+               * @type String
+               */
+              "artist" : null,
+  
+              /* [optional] Album.
+               * @type String
+               */
+              "album" : null,
+            }
+          ]
+        }        
+      </div>
+      <h4>Usage</h4>
+      Really the only thing this function provides is a way to separate the data you use to add a 
+      random audio player out of your HTML and into a separate file for easier maintenance. You 
+      are limited to one random audio player per JSON file but you can make this call for as many 
+      different elements as are contained in your page with a different JSON file for each.
+      <br><br>
+      Suppose we want to add another player like the one above to another element in the page with
+      the id "another-random-element". We would start by adding the empty element and assigning
+      that id to it in our HTML as follows.
+      <div class="code-pre">
+      &lt;div id="another-random-element"&gt;&lt;/div&gt;
+      </div>
+      Then we would the same data we used in the previous call into an external JSON file remembering
+      that we have to add the id of the element that will contain the audio player.
+      <div class="code-pre">
+      {
+        "id" : "another-random-element",
+        "autoplay" : "false",
+        "volume" : "80",
+        "data" : [
+          {
+            "url" : "/demo/audio/gibbon-monkey.mp3",
+            "title" : "Gibbon Monkey"
+          },
+          {
+            "url" : "/demo/audio/puppy-barking.mp3",
+            "title" : "Puppy Barking"
+          },
+          {
+            "url" : "/demo/audio/gibbon-monkey.mp3",
+            "title" : "Rooster"
+          }
+        ]
+      }
+      </div>
+      With the JSON file and the container element in place, putting it all together is now 
+      simply a matter of making a single JavaScript call at the bottom of your page to load
+      the file and insert the audio element.
+      <div class="code-pre">
+        Gp.RandomAudio.fromJSON("myaudio.json");
+      </div>
+      <div id="another-random-element"></div>
+    </div>
+
+    <div class="function-title">randomaudio.json</div>
+    <div class="function-description">
+      By taking special care in naming your JSON file, you can make things even easier. When the
+      file <i>gp.tools.js</i> is loaded, the location of the page is automatically scanned for a
+      file named <i>randomaudio.json</i>. If it is found, then it is loaded automatically.
+      <h4>Usage</h4>
+      The HTML and the contents of the file are exactly the same as with the <i>fromJSON</i>
+      description. Here, however, you make sure the name of the JSON file is <i>randomaudio.json</i>.
+      Remove the call to <i>fromJSON</i> from your script section as this will now happen
+      automatically.
+      <br><br>
+      That's it! The audio player below was added automatically when the document was loaded and
+      was set to autoplay so it's the one you heard when you first clicked on this page.
+      <br><br>
+      <div id="random-audio"></div>
+    </div>
+  </div>
+
+  <footer>
+    Powered by HTML5, Javascript, jQuery, Lightbox, and gp.tools.js.
+    <br><br>
+    Sound samples recorded by Daniel Simon and Mike Koenig
+    <span id="gp-upgrade"></span>
+    <br><br>
+    <span id="gp-copyright"></span>
+  </footer>
+</body>
+
+<script type="text/javascript" src="/dist/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="/dist/mediaelement/mediaelement-and-player.js"></script>
+<script type="text/javascript" src="/dist/gp.tools.js"></script>
+<script>
+  Gp.RandomAudio.addPlayer("some-id",
+    {
+      "autoplay" : "false",
+      "volume" : "80",
+      "data" : [
+        {
+          "url" : "/demo/audio/gibbon-monkey.mp3",
+          "title" : "Gibbon Monkey"
+        },
+        {
+          "url" : "/demo/audio/puppy-barking.mp3",
+          "title" : "Puppy Barking"
+        },
+        {
+          "url" : "/demo/audio/gibbon-monkey.mp3",
+          "title" : "Rooster"
+        }
+      ]
+    }
+  );
+  Gp.RandomAudio.fromJSON("myaudio.json");
+</script>
+</html>

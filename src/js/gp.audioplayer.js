@@ -50,36 +50,38 @@ $.extend(Gp, {
             // Locate or create the audio element identified by the input id.
             //
             var container = Gp._getContainer(id, "gp-audio-album", "gp-audio-container");
-
-            // Append a span element to hold the title only if a title was specified.
-            //
-            if (audioFile.title != null)
+            if (container.length !== 0)
             {
-                $("<span>").prop("className", "gp-audio-title").
-                            html(audioFile.title).
-                            appendTo(container);
+                // Append a span element to hold the title only if a title was specified.
+                //
+                if (audioFile.title != null)
+                {
+                    $("<span>").prop("className", "gp-audio-title").
+                                html(audioFile.title).
+                                appendTo(container);
+                }
+
+                // Create an HTML5 "audio" element. Set the id using a slightly modified version of the
+                // container id, set the url, and set the autoplay property.
+                //
+                var player = $("<audio>").prop("id", id + "-player").
+                                          prop("src", audioFile.url).
+                                          prop("controls", "controls").
+                                          prop("preload", "metadata").
+                                          prop("autoplay", (audioFile.autoplay === "true") ? true : false).
+                                          appendTo(container);
+
+                // Get the starting volume. We accept a value between 0 and 100 and will default
+                // to 80 if no volume is given.
+                //
+                var volume = audioFile.volume || 80;
+
+                // Now call into MediaElement to skin the new player.
+                //
+                $("#" + player.prop("id")).mediaelementplayer({
+                    startVolume : volume / 100.0
+                });
             }
-
-            // Create an HTML5 "audio" element. Set the id using a slightly modified version of the
-            // container id, set the url, and set the autoplay property.
-            //
-            var player = $("<audio>").prop("id", id + "-player").
-                                      prop("src", audioFile.url).
-                                      prop("controls", "controls").
-                                      prop("preload", "metadata").
-                                      prop("autoplay", (audioFile.autoplay === "true") ? true : false).
-                                      appendTo(container);
-
-            // Get the starting volume. We accept a value between 0 and 100 and will default
-            // to 80 if no volume is given.
-            //
-            var volume = audioFile.volume || 80;
-
-            // Now call into MediaElement to skin the new player.
-            //
-            $("#" + player.prop("id")).mediaelementplayer({
-                startVolume : volume / 100.0
-            });
         },
 
         // Function will load a series of audio file objects from the specified JSON file and adds

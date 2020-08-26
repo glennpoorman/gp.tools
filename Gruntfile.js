@@ -11,6 +11,7 @@ module.exports = function(grunt) {
                     'src/js/gp.menu.js',
                     'src/js/gp.slideshow.js',
                     'src/js/gp.audioplayer.js',
+                    'src/js/gp.randomaudio.js',
                     'src/js/gp.ready.js'
                 ],
                 dest: 'dist/gp.tools.js',

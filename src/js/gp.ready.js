@@ -26,4 +26,9 @@ $(function() {
     // attempt to load up the audio player utilities with the data.
     //
     Gp.AudioPlayer.fromJSON("audio.json");
+
+    // Look for a JSON file in the current page location named "randomaudio.json" and, if
+    // found, attempt to load up the random audio utilities with the data.
+    //
+    Gp.RandomAudio.fromJSON("randomaudio.json");
 });

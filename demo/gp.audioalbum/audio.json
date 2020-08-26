@@ -4,15 +4,15 @@
   [
     {
       "title"  : "Gibbon Monkey",
-      "url"    : "gibbon-monkey.mp3"
+      "url"    : "/demo/audio/gibbon-monkey.mp3"
     },
     {
       "title"  : "Puppy Barking",
-      "url"    : "puppy-barking.mp3"
+      "url"    : "/demo/audio/puppy-barking.mp3"
     },
     {
       "title"  : "Rooster",
-      "url"    : "rooster.mp3"
+      "url"    : "/demo/audio/rooster.mp3"
     }
   ]
 }

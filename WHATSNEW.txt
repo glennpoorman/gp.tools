@@ -1,3 +1,17 @@
+Gp.Tools.V2.2
+-------------
+* Updated to MediaElement 4.2.16
+* Updated to LightBox2 2.11.3
+* Updated to jQuery 3.5.1
+* Updated to Grunt 1.2.1
+* Fixed the broken "volume" spec for the audio player that was introduced in the last MediaElement update.
+* Fixed the syntax for the loading of jquery files in all of the demo pages.
+* Fixed Gruntfile to copy "jQuery" from installed packages to "dist" folder.
+* Modified all of the demo pages to load scripts/styles as though running in a web server with the top level folder as the root ("gp.tools").
+* Modified "README.md" to show instructions for building and for running demo pages in local web server.
+* Moved audio files in demo pages into a single folder to avoid duplicates.
+* Added "RandomAudio" functions for adding an audio player to randomly select audio from an input list of options.
+
 Gp.Tools.V2.1
 -------------
 * Code cleaned up and optimized for faster downloads.

@@ -1,0 +1,20 @@
+{
+  "id" : "random-audio",
+  "autoplay" : "true",
+  "volume" : "30",
+  "data" :
+  [
+    {
+      "title" : "Gibbon Monkey",
+      "url"   : "/demo/audio/gibbon-monkey.mp3"
+    },
+    {
+      "title" : "Puppy Barking",
+      "url"   : "/demo/audio/puppy-barking.mp3"
+    },
+    {
+      "title" : "Rooster",
+      "url"   : "/demo/audio/rooster.mp3"
+    }
+  ]
+}
