@@ -39,16 +39,6 @@
 {
   .mejs__container
   {
-    max-width   : 98%;
-  }
-  .gp-audio-container
-  {
-    display     : block;
-    max-width   : 98%;
-  }
-  .gp-audio-title
-  {
-    box-sizing  : border-box;
-    max-width   : 98%;
+    max-width   : 100%;
   }
 }
