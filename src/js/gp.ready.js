@@ -31,4 +31,9 @@ $(function() {
     // found, attempt to load up the random audio utilities with the data.
     //
     Gp.RandomAudio.fromJSON("randomaudio.json");
+
+    // Loof for a JSON file in the current page location named "video.json" and, if found,
+    // attempt to load up the modal video utilities with the data.
+    //
+    Gp.ModalVideo.fromJSON("video.json");
 });

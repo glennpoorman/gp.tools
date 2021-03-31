@@ -1,0 +1,31 @@
+/**************************************************************************************************/
+/* Gp.ModalVideo                                                                                  */
+/**************************************************************************************************/
+
+.gp-video-container
+{
+  clear          : both;
+  overflow       : auto;
+  padding        : 6px;
+  vertical-align : middle;
+  text-align     : left;
+}
+
+.gp-video-button {
+  cursor         : pointer;
+  display        : block;
+  float          : left;
+  left           : 0;
+  margin-bottom  : 10px;
+  margin-right   : 12px;
+  position       : relative;
+  top            : 0;
+}
+
+.gp-play-button
+{
+  content        : url(gp-play-button.png);
+  left           : 0;
+  position       : absolute;
+  top            : 0;
+}

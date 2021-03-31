@@ -66,10 +66,11 @@ You can download the latest version of Python at:
 
 http://python.org
 
-For my own testing, I am currently running Python 2.7.14 in Windows 10. Running the demo pages
+For my own testing, I am currently running Python 3.6.1 in Windows 10. Running the demo pages
 involved the following steps:
 
 1. Opened a CMD prompt.
-2. Ran **python -m SimpleHTTPServer** (note that this is different in Python 3)
+2. Ran **python -m SimpleHTTPServer** (for Python older than version 3)
+3. Ran **python -m http.server** (for Python version 3)
 3. Ran my Chrome browser.
 4. In the address bar, typed **localhost:8000/demo**

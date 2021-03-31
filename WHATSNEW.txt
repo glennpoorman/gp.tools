@@ -11,6 +11,7 @@ Gp.Tools.V2.2
 * Modified "README.md" to show instructions for building and for running demo pages in local web server.
 * Moved audio files in demo pages into a single folder to avoid duplicates.
 * Added "RandomAudio" functions for adding an audio player to randomly select audio from an input list of options.
+* Added "ModalVideo" functions that allow for selected YouTube video link to play in a modal window within the current web page.
 
 Gp.Tools.V2.1
 -------------

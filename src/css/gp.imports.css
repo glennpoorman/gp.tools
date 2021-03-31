@@ -1,11 +1,12 @@
 /**************************************************************************************************/
 /* Imports                                                                                        */
 /*                                                                                                */
-/* Stylesheets for both "LightBox" and "MediaElement" are required for some functionality to work.*/
-/* We put them both in a separate CSS file and make sure this file is the first one loaded. The   */
-/* "@import url" directive doesn't appear to play nicely after any media queries have been done so*/
-/* we just go ahead and import both style sheets first thing.                                     */
+/* Stylesheets for "LightBox", "MediaElement", and "modal-video" are required for some of the     */
+/* functionality to work. We put them in a separate CSS file and make sure this file is the first */
+/* one loaded. The "@import url" directive doesn't appear to play nicely after any media queries  */
+/* have been done so we just go ahead and import the style sheets first thing.                    */
 /**************************************************************************************************/
 
-@import url("lightbox/css/lightbox.min.css");           /* LightBox CSS file is required.         */
-@import url("mediaelement/mediaelementplayer.min.css"); /* Make sure MediaElement styles are in.  */
+@import url("lightbox/css/lightbox.min.css");           /* LightBox styles.                       */
+@import url("mediaelement/mediaelementplayer.min.css"); /* MediaElement styles.                   */
+@import url("modal-video/css/modal-video.min.css");     /* modal-video styles.                    */

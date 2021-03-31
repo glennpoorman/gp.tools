@@ -9,6 +9,7 @@ module.exports = function(grunt) {
                     'src/js/gp.internals.js',
                     'src/js/gp.basic.js',
                     'src/js/gp.menu.js',
+                    'src/js/gp.modalvideo.js',
                     'src/js/gp.slideshow.js',
                     'src/js/gp.audioplayer.js',
                     'src/js/gp.randomaudio.js',
@@ -22,6 +23,7 @@ module.exports = function(grunt) {
                     'src/css/gp.imports.css',
                     'src/css/gp.basic.css',
                     'src/css/gp.menu.css',
+                    'src/css/gp.modalvideo.css',
                     'src/css/gp.activebanner.css',
                     'src/css/gp.slideshow.css',
                     'src/css/gp.audioplayer.css'
@@ -47,6 +49,12 @@ module.exports = function(grunt) {
                 cwd: 'node_modules/mediaelement/build/',
                 src: ['**'],
                 dest: 'dist/mediaelement/',
+            },
+            modalvideo: {
+                expand: true,
+                cwd: 'node_modules/modal-video/',
+                src: ['js/**','css/**'],
+                dest: 'dist/modal-video/',
             },
             images: {
                 expand: true,

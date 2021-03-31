@@ -1,0 +1,23 @@
+{ "prefix" : "video-container",
+  "data"   :
+  [
+    {
+      "vid" : "GlX0DzaEIaM",
+      "thumb" : "nightbefore.jpg",
+      "title" : "The Night Before",
+      "desc" : "From Help!"
+    },
+    {
+      "vid" : "yYvkICbTZIQ",
+      "title" : "Paperback Writer",
+      "thumb" : "paperback.jpg",
+      "desc" : "Official music video"
+    },
+    {
+      "vid": "HtUH9z_Oey8",
+      "title" : "Strawberry Fields Forever",
+      "thumb" : "strawberry.jpg",
+      "desc" : "Official music video"
+    }
+  ]
+}

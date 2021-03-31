@@ -21,9 +21,9 @@
 
     <h2>The Tools</h2>
     The tools are encapsulated into a single JS file and a single CSS file. In addition, there
-    are dependencies on the 3rd party tools <i>jQuery</i>, <i>LightBox</i>, and <i>MediaElement</i>.
-    The proper versions of these tools are included in the distribution. The tools themselves are
-    broken up into logical groups separated by functionality as follows:
+    are dependencies on the 3rd party tools <i>jQuery</i>, <i>LightBox</i>, <i>MediaElement</i>,
+    and <i>modal-video</i>. The proper versions of these tools are included in the distribution.
+    The tools themselves are broken up into logical groups separated by functionality as follows:
     <ul>
       <li><b>Gp.Basic</b><br>
           Some simple functions for inserting copyright, displaying single images, inserting
@@ -40,6 +40,10 @@
       <li><b>Gp.AudioPlayer, Gp.AudioAlbum, Gp.RandomAudio</b><br>
           Tools for inserting audio elements into your page and connecting them with local
           audio files.
+          <br><br>
+      <li><b>Gp.ModalVideo</b><br>
+          Tools for inserting YouTube links into your page that, when clicked, will play
+          the full size YouTube video in a modal window within your web page.
     </ul>
 
     <h2>Setup</h2>
@@ -55,17 +59,19 @@
     Depending on your usage, additionally required files are:
     <div class="code">
       lightbox/js/lightbox-plus-jquery.js<br>
-      mediaelement/mediaelement-and-player.js
+      mediaelement/mediaelement-and-player.js<br>
+      modal-video/jss/jquery-modal-video.js<br>
     </div>
-    Please note that while both <i>LightBox</i> and <i>MediaElement</i> also distribute required
-    style sheet (CSS) files, these files are automatically loaded in with <i>gp.tools.css</i>. For
-    the JS files, however, we leave pulling those in up to you.
+    Please note that while <i>LightBox</i>, <i>MediaElement</i>, and <i>modal-video</i> also
+    distribute required style sheet (CSS) files, these files are automatically loaded in with
+    <i>gp.tools.css</i>. For the JS files, however, we leave pulling those in up to you.
     <br><br>
     Also note that this distribution delivers minimized versions of all of the above files.
     <div class="code">
       jquery/jquery.min.js<br>
       lightbox/js/lightbox-plus-jquery.min.js<br>
       mediaelement/mediaelement-and-player.min.js<br>
+      modal-video/js/jquery-modal-video.min.js<br>
       gp.tools.min.js<br>
       gp.tools.min.css<br>
     </div>
@@ -73,9 +79,10 @@
     <h4>CSS</h4>
     There are styles associated with many of the included tools some required and some optional
     and overridable. These styles can be pulled in via the <i>gp.tools.css</i> or 
-    <i>gp.tools.min.css</i> files. In addition, both the <i>LightBox</i> and <i>MediaElement</i>
-    utilities ship with their own stylesheets. Both of those stylesheets are automatically pulled
-    in with <i>gp.tools.css</i> though so there should never be a need to reference them directly.
+    <i>gp.tools.min.css</i> files. In addition, the <i>LightBox</i>, <i>MediaElement</i>, and
+    <i>modal-video</i> utilities ship with their own stylesheets. All of those stylesheets are
+    automatically pulled in with <i>gp.tools.css</i> though so there should never be a need to
+    reference them directly.
     <br><br>
     To pull in all of the necessary styles then is simply a matter of including the one stylesheet
     in the <i>&lt;head&gt;</i> section of your page.
@@ -91,14 +98,15 @@
       &lt;script type="text/javascript" src="jquery/jquery.js"&gt;&lt;/script&gt;<br>
       &lt;script type="text/javascript" src="gp.tools.js"&gt;&lt;/script&gt;
     </div>
-    In addition, both <i>LightBox</i> and <i>MediaElement</i> are required for some functionality.
-    In the cases where you need those tools as well, you will need to pull in those JS files before
-    you include <i>gp.tools.js</i>. Worst case scenario is a page that uses both the imaging and
-    the audio utilities which would look like:
+    In addition, <i>LightBox</i>, <i>MediaElement</i>, and <i>modal-video</i> are required for some
+    functionality. In the cases where you need those tools as well, you will need to pull in those
+    JS files before you include <i>gp.tools.js</i>. Worst case scenario is a page that uses the imaging,
+    audio, and video utilities which would look like:
     <div class="code">
       &lt;script type="text/javascript" src="jquery/jquery.js"&gt;&lt;/script&gt;<br>
       &lt;script type="text/javascript" src="lightbox/js/lightbox-plus-jquery.js"&gt;&lt;/script&gt;<br>
       &lt;script type="text/javascript" src="mediaelement/mediaelement-and-player.js"&gt;&lt;/script&gt;<br>
+      &lt;script type="text/javascript" src="modal-video/js/jquery-modal-video.js"&gt;&lt;/script&gt;<br>
       &lt;script type="text/javascript" src="gp.tools.js"&gt;&lt;/script&gt;
     </div>
     <b>IMPORTANT:</b> It's important to note that the <i>Gp.Tools.js</i> file has several tasks that
@@ -117,11 +125,12 @@
       <li><a href="gp.audioplayer">Gp.AudioPlayer</a> - embedded audio elements part 1
       <li><a href="gp.audioalbum">Gp.AudioAlbum</a> - embedded audio elements part 2
       <li><a href="gp.randomaudio">Gp.RandomAudio</a> - embedded audio elements part 3
+      <li><a href="gp.modalvideo">Gp.ModalVideo</a> - play YouTube videos in a modal window within a web page
     </ul>
   </div>
 
   <footer>
-    Powered by HTML5, Javascript, jQuery, Lightbox, MediaElement, and Gp.Tools.
+    Powered by HTML5, Javascript, jQuery, Lightbox, MediaElement, modal-video, and Gp.Tools.
     <span id="gp-upgrade"></span>
     <br><br>
     <span id="gp-copyright" data-who="Glenn Poorman"></span>

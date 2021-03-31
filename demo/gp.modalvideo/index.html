@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Gp.Tools (V2)</title>
+  <link rel="stylesheet" href="/dist/gp.tools.css" />
+  <link rel="stylesheet" href="/demo/styles.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+</head>
+
+<body>
+  <header>
+    <div id="banner">
+      Gp.ModalVideo
+    </div>
+  </header>
+
+  <div class="main">
+    <h1>Modal YouTube Video Player</h1>
+    <h4>Utilities for playing a YouTube vide in a modal window using <i>modal-video</i></h4>
+
+    Using the modal video utilities, you can create nice visual links to any YouTube videos
+    and, when selected, have those videos play in their own modal window within the web
+    page. Setting up the page is a matter of specifying a container element in the HTML
+    for every desired video link and filling in the details for the link using either a
+    JavaScript call or a JSON file of video objects. If the file is named <i>video.json</i>,
+    it will be automatically loaded on document load.
+
+    <div class="function-title">Gp.ModalVideo.addVideo(id, video);</div>
+    <div class="function-description">
+      <h4>Requires <i>modal-video</i></h4>
+      Adds a video link to the page as a child of the given container element using the data in
+      the given JSON video object.
+      <div class="code">
+        <b>id</b> - id of the container element where the video element will be inserted.<br>
+        <b>video</b> - JSON video object contains the video data.
+      </div>
+      <div class="code-pre">
+      {
+        /* [required] YouTube video id.
+         * @type String
+         */
+        "vid" : null,
+
+        /* [required] Path to thumbnail image.
+         * @type String
+         */
+        "thumb" : null,
+
+        /* [required] Title.
+         * @type String
+         */
+        "title" : null,
+
+        /* [optional] Description.
+         * @type String
+         */
+        "desc" : null
+      }
+      </div>
+
+      <h4>Usage</h4>
+      To use the <i>addVideo</i> function, the page needs a container element (preferably a DIV)
+      for the video link and the element must have a unique id.
+      <div class="code-pre">
+      &lt;div id="some-id"&gt;&lt;/div&gt;
+      </div>
+      With any container elements in place, the video elements are inserted by calling the
+      <i>addVideo</i> function for each container at the bottom of the page after all of the
+      requisite JS files have been pulled in.
+      <div class="code-pre">
+      Gp.ModalVideo.addVideo("some-id",
+        {
+          "vid" : "vq78BDwCujs",
+          "thumb" : "ififell.jpg",
+          "title" : "If I Fell",
+          "desc" : "From \"A Hard Day's Night\""
+        }
+      );
+      </div>
+      <div id="some-id"></div>
+    </div>
+
+    <div class="function-title">Gp.ModalVideo.fromJSON(jsonURL);</div>
+    <div class="function-description">
+      <h4>Requires <i>modal-video</i></h4>
+      Loads a series of video objects from the specified JSON file and adds the video elements
+      to elements on the current web page.
+      <div class="code">
+        <b>jsonURL</b> - url of the JSON file to load.
+      </div>
+      <div class="code-pre">
+      {
+        /* [optional] Common id of all container elements minus the index.
+         * @type String (default = "gp-modal-video")
+         */
+        "prefix" : null,
+
+        /* [required] Video data.
+         * @type Array of modal video objects
+         * Same format as object in <i>addVideo</i>
+         */
+        "data" :
+        [
+          {
+            modal video 1
+          },
+          {
+            modal video n
+          },
+        ]
+      }
+      </div>
+      If you have several video elements in your page, using <i>addVideo</i> for each element can
+      get quite messy. Using <i>fromJSON</i> allows you to simply put the video containers in your
+      page, define all of the video objects in a JSON file, and make one call to put it all together.
+
+      <h4>Usage</h4>
+      The setup in your HTML is pretty much the same as in <i>addVideo</i> except that the
+      formatting of the container element ids is a little more strict. Ideally you will have as
+      many container elements in your page as there are video objects in the JSON file. The id
+      of each element must be <i>"prefix-n"</i> where <i>"prefix"</i> is a JSON property and
+      <i>"n"</i> is the 1-based index of the video object in the array. Suppose then that you
+      wanted to put three video objects in your page. You would start by laying out those objects
+      in your JSON file as follows.
+      <div class="code-pre">
+      { "prefix" : "video-container",
+        "data"   :
+        [
+          {
+            "vid" : "GlX0DzaEIaM",
+            "thumb" : "nightbefore.jpg",
+            "title" : "The Night Before",
+            "desc" : "From Help!"
+          },
+          {
+            "vid" : "yYvkICbTZIQ",
+            "title" : "Paperback Writer",
+            "thumb" : "paperback.jpg",
+            "desc" : "Official music video"
+          },
+          {
+            "vid": H"tUH9z_Oey8",
+            "title" : "Strawberry Fields Forever",
+            "thumb" : "strawberry.jpg",
+            "desc" : "Official music video"
+          }
+        ]
+      }
+      </div>
+      The next step would be to put the container elements in your HTML. The elements don't have to
+      be grouped together. The only thing that matters is that they exist and have the correct id
+      format. Again note the id matches the <i>"prefix"</i> property from the JSON followed by a
+      dash and the index of the item in the array.
+      <div class="code-pre">
+      &lt;div id="video-container-1"&gt;&lt;/div&gt;
+      &lt;div id="video-container-2"&gt;&lt;/div&gt;
+      &lt;div id="video-container-3"&gt;&lt;/div&gt;
+      </div>
+      With the JSON file and the container elements all in place, putting it all together is now
+      simply a matter of making a single JavaScript call at the bottom of your page to load the
+      file and insert the video elements.
+      <div class="code-pre">
+      Gp.ModalVideo.fromJSON("myvideo.json");
+      </div>
+    </div>
+
+    <div class="function-title">video.json</div>
+    <div class="function-description">
+      By taking special care in naming your JSON file, you can make things even easier. When the
+      file <i>gp.tools.js</i> is loaded, the location of the page is automatically scanned for a
+      file named <i>video.json</i>. If it is found, then it is loaded automatically.
+      <h4>Usage</h4>
+      The HTML and the contents of the file are exactly the same as with the <i>fromJSON</i>
+      description. Here, however, you make sure the name of the JSON file is <i>video.json</i>.
+      Remove the call to <i>fromJSON</i> from your script section as this will now happen
+      automatically.
+      <br><br>
+      That's it!
+      <br><br>
+      <div id="video-container-1"></div>
+      <div id="video-container-2"></div>
+      <div id="video-container-3"></div>
+    </div>
+
+    <h2>Customization</h2>
+    <div class="function-description">
+      Like the other utilities, there are some styles included in <i>gp.tools.css</i> that are used
+      in the modal video code. You can use these styles as is or override them as you see fit.
+      <br><br>
+      When a video link is added to the page, the style <i>.gp-video-container</i> is automatically
+      applied to the container element. The default implementation sets the display type to make the
+      element easier to manipulate and float.
+      <div class="code-pre">
+      .gp-video-container
+      {
+        clear          : both;
+        overflow       : auto;
+        padding        : 6px;
+        vertical-align : middle;
+        text-align     : left;
+      }
+      </div>
+      Two other styles are also available for modification.
+      <div class="code">
+        <b>.gp-video-button</b> - the element containing the thumbnail and play button.<br>
+        <b>.gp-play-button</b> - the play button image that overlays the thumbnail.
+      </div>
+      There really shouldn't be much reason to play with these but there's never any harm in
+      experimenting.
+    </div>
+  </div>
+
+  <footer>
+    Powered by HTML5, Javascript, jQuery, Lightbox, MediaElement, modal-video, and Gp.Tools.
+    <br><br>
+    Sound samples recorded by Daniel Simon and Mike Koenig
+    <span id="gp-upgrade"></span>
+    <br><br>
+    <span id="gp-copyright"></span>
+  </footer>
+</body>
+
+<script type="text/javascript" src="/dist/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="/dist/modal-video/js/jquery-modal-video.min.js"></script>
+<script type="text/javascript" src="/dist/gp.tools.js"></script>
+<script>
+      Gp.ModalVideo.addVideo("some-id",
+        {
+          "vid" : "vq78BDwCujs",
+          "thumb" : "ififell.jpg",
+          "title" : "If I Fell",
+          "desc" : "From \"A Hard Day's Night\""
+        }
+      );
+</script>
+</html>
