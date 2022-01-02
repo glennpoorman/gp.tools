@@ -51,11 +51,11 @@ $.extend(Gp, {
                 var img = new Image();
                 img.onload = function() {
 
-                  // The play button image is 80x56. We need to know those dimensions (cut in half) to
-                  // determine how to position the button within the thumbnail.
-                  //
-                  playXhalf = 40;
-                  playYhalf = 28;
+                  // We're going to need the dimensions of the play button in order to position the
+                  // button within the thumbnail image. Those dimensions will either be 80x56 or
+                  // 32x22 depending on if the thumbnail image is more or less than 320 pixels.
+                  playXhalf = (this.width < 320) ? 16 : 40;
+                  playYhalf = (this.width < 320) ? 11 : 28;
 
                   // Determine the positioning for the play button by cutting the thumbnail in half in
                   // both the vertical and horizontal direction and subtracting half the dimensions of
@@ -63,6 +63,11 @@ $.extend(Gp, {
                   //
                   buttonLeft = (this.width / 2) - playXhalf;
                   buttonTop  = (this.height / 2) - playYhalf;
+
+                  // Determine the class we're going to apply to the play button image again depending
+                  // on whether the thumbnail image is more or less than 320 pixels.
+                  //
+                  playButtonClass = (this.width < 320) ? "gp-play-button-small" : "gp-play-button";
 
                   // Fetch the container identified by the input id and make sure to add the proper
                   // video container class name.
@@ -88,7 +93,8 @@ $.extend(Gp, {
                   // we calculated above to set the absolute left and top values. The CSS spec takes
                   // care of loading the play button image.
                   //
-                  $("<img>").addClass("gp-play-button").
+                  $("<img>").addClass("gp-play-button-base").
+                             addClass(playButtonClass).
                              css("left", buttonLeft).
                              css("top", buttonTop).
                              appendTo(videoButton);

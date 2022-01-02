@@ -88,7 +88,7 @@ ul#gp-menu-bar
     float         : none;                    /* Remove float from list items.                     */
   }
 
-  ul#gp-menu-bar li a
+  ul#gp-menu-bar li a, ul#gp-menu-bar li span
   {
     border-radius : 0;                       /* Customizable: list anchor border radius.          */
     margin-right  : 0;                       /* Customizable: list anchor horizontal spacing.     */

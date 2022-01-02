@@ -15,7 +15,7 @@ ul#gp-menu-bar li
   position              : relative;          /* Allow for absolute child positioning.             */
 }
 
-ul#gp-menu-bar li a
+ul#gp-menu-bar li a, ul#gp-menu-bar li span
 {
   background            : #000060;           /* Customizable: list anchor background color.       */
   border-radius         : 4px;               /* Customizable: list anchor border radius.          */
