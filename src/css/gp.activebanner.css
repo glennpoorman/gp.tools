@@ -11,13 +11,13 @@ a#gp-menu-icon
   width           : 40px;                    /* Customizable: image width.                        */
 }
 
-section#gp-nav-section
+div#gp-nav-section
 {
   background      : #000060;                 /* Customizable: bottom banner background color.     */
   padding         : 4px;                     /* Customizable: bottom banner padding.              */
 }
 
-section#gp-title-section
+div#gp-title-section
 {
   background      : #000060;                 /* Customizable: top banner background color.        */
   color           : white;                   /* Customizable: top banner text color.              */
@@ -67,12 +67,12 @@ ul#gp-menu-bar
     display       : inline-block;            /* Turn on mobile menu icon.                         */
   }
 
-  section#gp-nav-section
+  div#gp-nav-section
   {
     padding       : 0;                       /* Customizable: bottom banner padding.              */
   }
 
-  section#gp-title-section
+  div#gp-title-section
   {
     text-align    : left;                    /* Customizable: top banner content alignment.       */
   }
