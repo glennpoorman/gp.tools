@@ -6,6 +6,15 @@ body
   padding        : 0;
 }
 
+div#banner
+{
+  background     : #000060;
+  color          : white;
+  font-size      : 2.25em;
+  padding        : 12px;
+  text-align     : center;
+}
+
 div.code
 {
   font-family    : "Courier New", Courier, monospace;
@@ -67,12 +76,6 @@ div.gp-audio-container
   font-size      : 0.91em;
 }
 
-div.main
-{
-  margin         : 8px;
-  margin-bottom  : 25px;
-}
-
 footer
 {
   border-top     : 1px solid #808080;
@@ -81,15 +84,6 @@ footer
   margin         : 8px;
   margin-top     : 16px;
   padding-top    : 6px;
-}
-
-div#banner
-{
-  background     : #000060;
-  color          : white;
-  font-size      : 2.25em;
-  padding        : 12px;
-  text-align     : center;
 }
 
 h1
@@ -122,6 +116,12 @@ h5
 h6
 {
   font-size      : 0.67;
+}
+
+main
+{
+  margin         : 8px;
+  margin-bottom  : 25px;
 }
 
 nav
