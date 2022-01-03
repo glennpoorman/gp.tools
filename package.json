@@ -9,10 +9,10 @@
   "author": "Glenn Poorman",
   "license": "ISC",
   "dependencies": {
-    "grunt": "^1.2.1",
-    "jquery": "^3.5.1",
+    "grunt": "^1.4.1",
+    "jquery": "^3.6.0",
     "lightbox2": "^2.11.3",
-    "mediaelement": "^4.2.16",
+    "mediaelement": "^5.0.4",
     "modal-video": "^2.4.6"
   },
   "devDependencies": {

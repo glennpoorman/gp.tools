@@ -53,8 +53,9 @@
 
     <h2>The HTML</h2>
     The HTML is still fairly simple but requires a little more care than the simple menu sample.
-    For the banner to work, there must be two <i>div</i> elements defined. One is the title section
-    and the other is the navigation section.
+    For the banner to work, there must be an element defined for the title section and another
+    for the navigation section. They can be any division or section type of element as long as 
+    they are tagged with the proper ids "gp-title-section" and "gp-nav-section".
     <div class="code-pre">
     &lt;div id="gp-title-section"&gt;
       ...
@@ -77,14 +78,17 @@
     initialization code will take care of marking any other elements that require ids.
     <div class="code-pre">
     &lt;div id="gp-nav-section"&gt;
-      &lt;ul&gt;
-      &lt;li&gt;&lt;a href="#"&gt;One&lt;/a&gt;
-      &lt;li&gt;&lt;a href="#"&gt;Two&lt;/a&gt;
-          &lt;div&gt;
-            &lt;a href="#"&gt;Two-A&lt;/a&gt;
-            &lt;a href="#"&gt;Two-B&lt;/a&gt;
-          &lt;/div&gt;
-      &lt;/li&gt;
+      &lt;nav&gt;
+        &lt;ul&gt;
+          &lt;li&gt;&lt;a href="#"&gt;One&lt;/a&gt;
+          &lt;li&gt;&lt;a href="#"&gt;Two&lt;/a&gt;
+              &lt;div&gt;
+                &lt;a href="#"&gt;Two-A&lt;/a&gt;
+                &lt;a href="#"&gt;Two-B&lt;/a&gt;
+              &lt;/div&gt;
+          &lt;/li&gt;
+        &lt;ul&gt;
+      &lt;nav&gt;
     &lt;/div&gt;
     </div>
     A good practice then is to wrap both sections in some manner of container element. This isn't
@@ -97,14 +101,17 @@
         gp.activebanner
       &lt;/div&gt;
       &lt;div id="gp-nav-section"&gt;
-        &lt;ul&gt;
-          &lt;li&gt;&lt;a href="#"&gt;One&lt;/a&gt;
-          &lt;li&gt;&lt;a href="#"&gt;Two&lt;/a&gt;
-              &lt;div&gt;
-                &lt;a href="#"&gt;Two-A&lt;/a&gt;
-                &lt;a href="#"&gt;Two-B&lt;/a&gt;
-              &lt;/div&gt;
-          &lt;/li&gt;
+        &lt;nav&gt;
+          &lt;ul&gt;
+            &lt;li&gt;&lt;a href="#"&gt;One&lt;/a&gt;
+            &lt;li&gt;&lt;a href="#"&gt;Two&lt;/a&gt;
+                &lt;div&gt;
+                  &lt;a href="#"&gt;Two-A&lt;/a&gt;
+                  &lt;a href="#"&gt;Two-B&lt;/a&gt;
+                &lt;/div&gt;
+            &lt;/li&gt;
+          &lt;ul&gt;
+        &lt;nav&gt;
       &lt;/div&gt;
     &lt;/header&gt;
     </div>
@@ -134,17 +141,17 @@
     <br><br>
     Styles available for override (in addition to the menu) are:
     <div class="code">
+      <b>#gp-nav-section</b> - The navigation section.<br>
+      <b>#gp-title-section</b> - The title section.<br>
       <b>a#gp-menu-icon</b> - The mobile menu icon.<br>
-      <b>div#gp-nav-section</b> - The navigation section.<br>
-      <b>div#gp-title-section</b> - The title section.<br>
       <b>nav#gp-active-nav</b> - The nav element containing the menu bar.<br>
     </div>
     In addition, there is a media query set to kick in when the screen width goes below 640 pixels
     that tweaks the following styles:
     <div class="code">
+      <b>#gp-nav-section</b><br>
+      <b>#gp-title-section</b><br>
       <b>a#gp-menu-icon</b><br>
-      <b>div#gp-nav-section</b><br>
-      <b>div#gp-title-section</b><br>
       <b>nav#gp-active-nav</b><br>
       <b>ul#gp-menu-bar li</b><br>
       <b>ul#gp-menu-bar li a</b><br> 

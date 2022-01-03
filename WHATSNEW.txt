@@ -1,8 +1,10 @@
 Gp.Tools.V2.3 (pending)
 -----------------------
+* Updated to jQuery 3.6.0
+* Updated to MediaElement 5.0.4
 * Added option to make top level menu items non-selectable.
 * Added code to to use half size "play" button in modal video when thumbnail width is less than 320 pixels.
-* Changed dependence on "<section>" elements to "<div>" elements in active banner.
+* Removed the dependence on the "<section>" element for the active nav and title sections.
 
 Gp.Tools.V2.2
 -------------

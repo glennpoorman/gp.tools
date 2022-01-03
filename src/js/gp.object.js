@@ -2,4 +2,4 @@
 var Gp = Gp || {};
 
 // Set the version number.
-Gp.version = "2.2.0";
+Gp.version = "2.3.0";
