@@ -8,6 +8,24 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 </head>
 
+<style>
+/* .gp-sticky */
+/* { */
+/*   position              : fixed; */
+/*   top                   : 0; */
+/*   width                 : 100%; */
+/*   z-index               : 2147483647; */
+/* } */
+/* #gp-nav-section */
+/* { */
+/*   box-sizing : border-box; */
+/* } */
+/* #gp-sticky-nav */
+/* { */
+/*   border : 1px solid transparent; */
+/* } */
+</style>
+
 <body>
   <header>
     <div id="gp-title-section">
@@ -38,7 +56,7 @@
     </div>
   </header>
 
-  <main>
+  <main id="gp-sticky-nav">
     <h1>Responsive Navigation</h1>
     <h4>Responsive banner and menu for compatibility with mobile devices.</h4>
 
@@ -116,24 +134,6 @@
     &lt;/header&gt;
     </div>
 
-    <h2>Making it Sticky</h2>
-    You may have seen websites with "sticky" navigation. In other words, you start to scroll a 
-    page that looks like this one and when the menu gets to the top, it "sticks" there and the 
-    rest of the page scrolls underneath. By default, we don't do that here but you have the option 
-    of turning that on. In order to do so, the contents of your page in between the header and
-    any footer must be wrapped in a &lt;main&gt; element AND that main element must have an id 
-    of "gp-sticky-nav". If you want to see it in action, edit this page, find the main element,
-    and add the id so that it looks as follows:
-    <div class="code-pre">
-    &lt;main id="gp-sticky-nav"&gt;
-      .. page contents .. 
-    &lt;/main&gt;
-    </div>
-    Once you made that change, reload the page and start scrolling up and down. Notice that the 
-    menu will stick to the top of the browser window when it gets there and will always be visible
-    no matter where you are in the contents of the page.
-    </div>
-
     <h2>The JavaScript</h2>
     As with the menu tools, there are no public functions to be called. In order to execute the
     JavaScript setup code, you only need to pull in the JS file <i>gp.tools.js</i> and the banner
@@ -189,5 +189,24 @@
 <script type="text/javascript" src="/dist/jquery/jquery.min.js"></script>
 <script type="text/javascript" src="/dist/lightbox/js/lightbox-plus-jquery.js"></script>
 <script type="text/javascript" src="/dist/gp.tools.js"></script>
+<script>
+//var isSticky = $("main#gp-sticky-nav").length;
+//var titleHeight = $("#gp-title-section").outerHeight(true);
+//var mainMargin = parseInt($("main").css("margin-top"));
+//$(window).scroll(function() {
+//  if (isSticky) {
+//    if (!window.matchMedia('(max-width : 640px)').matches) {
+//      if ($(window).scrollTop() > titleHeight) {
+//        var navHeight = parseInt($("#gp-nav-section").outerHeight());
+//        $("#gp-nav-section").addClass("sticky");
+//        $("main#gp-sticky-nav").css("margin-top", navHeight + mainMargin);
+//      } else {
+//        $("#gp-nav-section").removeClass("sticky");
+//        $("main#gp-sticky-nav").css("margin-top", mainMargin);
+//      }
+//    }
+//  }
+//});
+</script>
 
 </html>

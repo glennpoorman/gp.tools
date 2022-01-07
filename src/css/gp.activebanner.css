@@ -5,8 +5,22 @@
 #gp-nav-section
 {
   background      : #000060;               /* Customizable: bottom banner background color.     */
+  box-sizing      : border-box;              /* To avoid any jumping when nav section is stuck.   */
   padding         : 4px;                     /* Customizable: bottom banner padding.              */
 }
+
+.gp-sticky
+{
+  position        : fixed;                   /* Nav position is fixed when stuck.                 */
+  top             : 0;                       /* Position is fixed to top when stuck.              */
+  width           : 100%;                    /* Customizable: nav width is 100% when stuck.       */
+  z-index         : 2147483647;              /* Customizable: nav is always on top when stuck.    */
+}
+
+#gp-sticky-nav
+{
+  border          : 1px solid transparent;   /* Customizable: border avoids collapsing margins    */
+}                                            /* when scrolling in sticky mode. Avoid zero border. */
 
 #gp-title-section
 {

@@ -80,7 +80,7 @@
         //
         $("<a>").prop("href", "#").
                  prop("id", "gp-menu-icon").
-                 click(function() { $('ul#gp-menu-bar').slideToggle('slow'); }).
+                 on('click', function() { $('ul#gp-menu-bar').slideToggle('slow'); }).
                  appendTo("#gp-title-section");
 
         // When using the active banner, it is assumed that the only elements with ids assigned in
@@ -90,6 +90,55 @@
         //
         $("#gp-nav-section nav:first").prop("id", "gp-active-nav");
         $("#gp-nav-section ul:first").prop("id", "gp-menu-bar");
+
+        // If the document contains a "<main>" element with an id of "gp-sticky-nav", then we want
+        // the nav section of the document to "stick" to the top of the document when the window is
+        // scrolled such that the nav section reaches the top. This way the nav section is always
+        // visible no matter where in the document the browser window is current scrolled to. So
+        // here, before we do anything else with regards to scrolling, check to see if that main
+        // element with the id exists.
+        //
+        if ($("main#gp-sticky-nav").length) {
+
+            // Save off the initial top margin of the "<main>" element so that we can use it to
+            // adjust the document contents when the nav section becomes "sticky" or ceases to
+            // be "sticky".
+            //
+            var mainMargin = parseInt($("main#gp-sticky-nav").css("margin-top"));
+
+            // Set an event handler on the window to be called as the window is scrolled.
+            //
+            $(window).on("scroll", function() {
+
+                // Only execute the "sticky" code if the window is full sized. In other words,
+                // skip this entirely if we're on a mobile device..
+                //
+                if (!matchMedia("(max-width : 640px)").matches) {
+
+                    // Fetch the height of the title section and see if the current scroll
+                    // position is such that the nav section has reached the top of the browser
+                    // window. If it has, then add a class to the nav section to make it "sticky"
+                    // (i.e. absolute position at the top of the window.) Note that since the
+                    // nav section is now positioned absolute, we have to add margin to the "<main>"
+                    // element so that it doesn't appear to jump up underneath the nav section.
+                    //
+                    var titleHeight = parseInt($("#gp-title-section").outerHeight(true));
+                    if ($(window).scrollTop() > titleHeight) {
+                        var navHeight = parseInt($("#gp-nav-section").outerHeight(true));
+                        $("#gp-nav-section").addClass("gp-sticky");
+                        $("main#gp-sticky-nav").css("margin-top", navHeight + mainMargin);
+
+                    // If we fall through, that means the title section is now visible again and
+                    // we can undo everything we did above making the nav section flow with the
+                    // document once again.
+                    //
+                    } else {
+                        $("#gp-nav-section").removeClass("gp-sticky");
+                        $("main#gp-sticky-nav").css("margin-top", mainMargin);
+                    }
+                }
+            });
+        }
     };
 
     // Document ready function is called when the document is fully loaded.

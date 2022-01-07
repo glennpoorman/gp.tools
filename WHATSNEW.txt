@@ -5,6 +5,7 @@ Gp.Tools.V2.3 (pending)
 * Added option to make top level menu items non-selectable.
 * Added code to to use half size "play" button in modal video when thumbnail width is less than 320 pixels.
 * Removed the dependence on the "<section>" element for the active nav and title sections.
+* Added option to active banner to allow for "sticky" navigation section.
 
 Gp.Tools.V2.2
 -------------
