@@ -201,10 +201,16 @@ $.extend(Gp, {
         //
         simpleImage : function(id, caption, thumbscale, float, description) {
 
+            // We want to support images located in sub-folders so before getting started,
+            // look for any forward slashes in the input id and escape them with two back
+            // slashes.
+            //
+            var fixedId = ("#" + id).replace(new RegExp("/", "g"), "\\/");
+
             // Locate the element identified by the input id. Make sure the element uses the
             // "gp-simple-image" class and set the "float" property.
             //
-            var container = $("#" + id).prop("className", "gp-simple-image").css("float", float || "none");
+            var container = $(fixedId).prop("className", "gp-simple-image").css("float", float || "none");
 
             // See if the id contains a commonly supported image file suffix. If not, assume
             // the function was called with no suffix and use ".jpg".
