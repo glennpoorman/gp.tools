@@ -76,9 +76,14 @@ $.extend(Gp, {
                 //
                 var volume = audioFile.volume || 80;
 
+                // Create the path to the mediaElement sprite file.
+                //
+                var sprite = Gp._scriptPath() + "mediaelement/mejs-controls.svg";
+
                 // Now call into MediaElement to skin the new player.
                 //
                 $("#" + player.prop("id")).mediaelementplayer({
+                    iconSprite : sprite,
                     startVolume : volume / 100.0
                 });
             }

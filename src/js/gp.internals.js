@@ -2,6 +2,15 @@
 //
 $.extend(Gp, {
 
+    // Internal function returns the path to the currently executing script.
+    //
+    _scriptPath : function() {
+
+        // Fetch the current script tag from the document and parse out the source.
+        //
+        return $("script[src]").last().attr("src").split('?')[0].split('/').slice(0, -1).join('/')+'/';
+    },
+
     // Internal function creates an email link anchor under the given item using the given
     // user name, domain, and optional link text.
     //
