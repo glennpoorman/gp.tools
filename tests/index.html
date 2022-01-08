@@ -13,7 +13,12 @@
 <body style="padding : 8px">
 
   <h2>MediaElement</h2>
-  <audio id="test" src="/demo/audio/rooster.mp3" controls preload="metadata"></audio>
+  <b>With JavaScript</b>
+  <audio id="test1" src="/demo/audio/rooster.mp3" controls preload="metadata"></audio>
+  <br><br>
+  <b>Pure HTML</b>
+  <audio id="test2" src="/demo/audio/puppy-barking.mp3" controls preload="metadata"
+         class="mejs__player" data-mejsoptions='{ "iconSprite" : "/dist/mediaelement/mejs-controls.svg" }'></audio>
   <br><br>
 
   <h2>LightBox</h2>
@@ -27,7 +32,7 @@
 <script type="text/javascript" src="/dist/lightbox/js/lightbox-plus-jquery.js"></script>
 <script type="text/javascript" src="/dist/mediaelement/mediaelement-and-player.js"></script>
 <script>
-$("#test").mediaelementplayer(
+$("#test1").mediaelementplayer(
 { iconSprite : "/dist/mediaelement/mejs-controls.svg" }
 );
 </script>
