@@ -2,17 +2,29 @@
 <html>
 <head>
   <title>Tests</title>
+  <link rel="stylesheet" href="/dist/lightbox/css/lightbox.min.css" />
   <link rel="stylesheet" href="/dist/mediaelement/mediaelementplayer.min.css" />
   <link rel="stylesheet" href="/dist/gp.tools.css" />
   <link rel="stylesheet" href="/demo/styles.css" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 </head>
+
 <body style="padding : 8px">
+
   <h2>MediaElement</h2>
   <audio id="test" src="/demo/audio/rooster.mp3" controls preload="metadata"></audio>
+  <br><br>
+
+  <h2>LightBox</h2>
+  <a href="/demo/gp.basic/picture-1.jpg" rel="lightbox">
+    <img src="/demo/gp.basic/picture-1.jpg" width="120" height="120">
+  </a>
+  <br><br>
+
 </body>
 <script type="text/javascript" src="/dist/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="/dist/lightbox/js/lightbox-plus-jquery.js"></script>
 <script type="text/javascript" src="/dist/mediaelement/mediaelement-and-player.js"></script>
 <script>
 $("#test").mediaelementplayer(
