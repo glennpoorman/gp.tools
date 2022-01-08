@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Tests</title>
+  <link rel="stylesheet" href="/dist/mediaelement/mediaelementplayer.min.css" />
+  <link rel="stylesheet" href="/dist/gp.tools.css" />
+  <link rel="stylesheet" href="/demo/styles.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+</head>
+<body style="padding : 8px">
+  <h2>MediaElement</h2>
+  <audio id="test" src="/demo/audio/rooster.mp3" controls preload="metadata"></audio>
+</body>
+<script type="text/javascript" src="/dist/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="/dist/mediaelement/mediaelement-and-player.js"></script>
+<script>
+$("#test").mediaelementplayer(
+{ iconSprite : "/dist/mediaelement/mejs-controls.svg" }
+);
+</script>
+</html>
