@@ -22,19 +22,10 @@
   top            : 0;
 }
 
-.gp-play-button-base
-{
-  left           : 0;
-  position       : absolute;
-  top            : 0;
-}
-
 .gp-play-button
 {
   content        : url(gp-play-button.png);
-}
-
-.gp-play-button-small
-{
-  content        : url(gp-play-button-small.png); 
+  left           : 0;
+  position       : absolute;
+  top            : 0;
 }

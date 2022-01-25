@@ -51,23 +51,21 @@ $.extend(Gp, {
                 var img = new Image();
                 img.onload = function() {
 
-                  // We're going to need the dimensions of the play button in order to position the
-                  // button within the thumbnail image. Those dimensions will either be 80x56 or
-                  // 32x22 depending on if the thumbnail image is more or less than 320 pixels.
-                  playXhalf = (this.width < 320) ? 16 : 40;
-                  playYhalf = (this.width < 320) ? 11 : 28;
+                  // Determine the ideal width and height of the play button. The default image
+                  // is 80x56. That image is 25% in width and 31% in height of a video thumbnail
+                  // that measures 320x180. Those are our base numbers then so, no matter what
+                  // the width and height of the play button image (which is customizable), we'll
+                  // force it's width and height to 25% of the width and 31% of the height of the
+                  // video thumbnail (an aspect ration of approximately 1.43 to 1).
+                  playX = this.width * 0.25;
+                  playY = this.height * 0.31;
 
                   // Determine the positioning for the play button by cutting the thumbnail in half in
                   // both the vertical and horizontal direction and subtracting half the dimensions of
                   // the play button image.
                   //
-                  buttonLeft = (this.width / 2) - playXhalf;
-                  buttonTop  = (this.height / 2) - playYhalf;
-
-                  // Determine the class we're going to apply to the play button image again depending
-                  // on whether the thumbnail image is more or less than 320 pixels.
-                  //
-                  playButtonClass = (this.width < 320) ? "gp-play-button-small" : "gp-play-button";
+                  buttonLeft = (this.width / 2) - (playX / 2);
+                  buttonTop  = (this.height / 2) - (playY / 2);
 
                   // Fetch the container identified by the input id and make sure to add the proper
                   // video container class name.
@@ -93,10 +91,11 @@ $.extend(Gp, {
                   // we calculated above to set the absolute left and top values. The CSS spec takes
                   // care of loading the play button image.
                   //
-                  $("<img>").addClass("gp-play-button-base").
-                             addClass(playButtonClass).
+                  $("<img>").addClass("gp-play-button").
                              css("left", buttonLeft).
                              css("top", buttonTop).
+                             css("width", playX).
+                             css("height", playY).
                              appendTo(videoButton);
 
                   // Create a header tag (H3) to hold the video title and set the title from the
