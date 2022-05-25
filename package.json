@@ -9,7 +9,7 @@
   "author": "Glenn Poorman",
   "license": "ISC",
   "dependencies": {
-    "grunt": "^1.4.1",
+    "grunt": "^1.5.3",
     "jquery": "^3.6.0",
     "lightbox2": "^2.11.3",
     "mediaelement": "^5.0.5",
