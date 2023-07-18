@@ -9,11 +9,11 @@
   "author": "Glenn Poorman",
   "license": "ISC",
   "dependencies": {
-    "grunt": "^1.4.1",
-    "jquery": "^3.6.0",
-    "lightbox2": "^2.11.3",
-    "mediaelement": "^5.0.5",
-    "modal-video": "^2.4.6"
+    "grunt": "^1.6.1",
+    "jquery": "^3.7.0",
+    "lightbox2": "^2.11.4",
+    "mediaelement": "^6.0.3",
+    "modal-video": "^2.4.8"
   },
   "devDependencies": {
     "grunt-contrib-clean": "^2.0.0",
